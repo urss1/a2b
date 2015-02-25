@@ -1,0 +1,7 @@
+Einstellungen für das Android Studio:
+=======================================
++ Import Module (opendatatransport)
++ app >> Open Module Settings (F4) >> Dependencies >> add >> Modul (3) >> opendatatransport
+
+app >> manifests >> AndroidManifest.xml
++ <uses-permission android:name="android.permission.INTERNET" />
