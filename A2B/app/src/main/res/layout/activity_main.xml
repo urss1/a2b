@@ -47,7 +47,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="via:"
+        android:text="@string/viaLabelText"
         android:id="@+id/viaLabel"
         android:layout_below="@+id/toStation"
         android:layout_alignParentLeft="true"
@@ -71,11 +71,5 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="43dp" />
-
-    <CalendarView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/calendarView"
-        android:layout_marginBottom="83dp" />
 
 </RelativeLayout>

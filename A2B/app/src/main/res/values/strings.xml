@@ -1,8 +1,21 @@
 <resources>
+    // Application Name
     <string name="app_name">A2B</string>
-
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    // Activity Titles
+    <string name="title_activity_about">Über A2B</string>
+    //
+    <string name="actionAbout">About</string>
     <string name="toLabelText">nach:</string>
     <string name="fromLabelText">von:</string>
+    <string name="viaLabelText">via:</string>
+
+    <string name="labelAboutTitleText">Info über A2B</string>
+    <string name="aboutNameR">Raffael Zaghet</string>
+    <string name="aboutMailR">raffael.zaghet@gmail.com</string>
+    <string name="aboutNameU">Urs Sommerhalder</string>
+    <string name="aboutMailU">info@sumali.ch</string>
+    <string name="aboutImgRaDesc">Bild Raffael</string>
+    <string name="aboutImgUrDesc">Bild Urs</string>
+    <string name="aboutDiscTitle">Über das Projekt:</string>
+    <string name="aboutDiscText">Diese App ist im Rahmen des Faches \"Software Engineering für Mobile Plattformen\" entstanden. \nDie Installation und Nutzung erfolgt auf eigene Gefahr.</string>
 </resources>
