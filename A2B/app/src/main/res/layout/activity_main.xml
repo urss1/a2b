@@ -5,7 +5,77 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/fromLabelText"
+        android:id="@+id/fromLabel"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fromStation"
+        android:layout_below="@+id/fromLabel"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:width="@dimen/StationTextViewInput" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/toLabelText"
+        android:id="@+id/toLabel"
+        android:layout_below="@+id/fromStation"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/toStation"
+        android:layout_below="@+id/toLabel"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:width="@dimen/StationTextViewInput" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="via:"
+        android:id="@+id/viaLabel"
+        android:layout_below="@+id/toStation"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/viaStation"
+        android:layout_below="@+id/viaLabel"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:width="@dimen/StationTextViewInput" />
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Switch"
+        android:id="@+id/departureArrival"
+        android:layout_below="@+id/viaStation"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="43dp" />
+
+    <CalendarView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/calendarView"
+        android:layout_marginBottom="83dp" />
 
 </RelativeLayout>
