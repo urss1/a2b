@@ -1,13 +1,25 @@
 <resources>
     // Application Name
-    <string name="app_name">A2B</string>
+    <string name="appName">A-to-B</string>
     // Activity Titles
-    <string name="title_activity_about">Über A2B</string>
+    <string name="aboutTitle">Über A2B</string>
     //
     <string name="actionAbout">About</string>
-    <string name="toLabelText">nach:</string>
+    <string name="actionMain">Fahrplan</string>
+    <string name="actionFavorite">Favoriten</string>
+    <string name="actionClock">Wecker</string>
+
     <string name="fromLabelText">von:</string>
+    <string name="fromHintText">Abfahrtsort</string>
+
+    <string name="toLabelText">nach:</string>
+    <string name="toHintText">Ankunftsort</string>
+
     <string name="viaLabelText">via:</string>
+    <string name="viaHintText">via</string>
+
+
+
 
     <string name="labelAboutTitleText">Info über A2B</string>
     <string name="aboutNameR">Raffael Zaghet</string>
@@ -18,4 +30,15 @@
     <string name="aboutImgUrDesc">Bild Urs</string>
     <string name="aboutDiscTitle">Über das Projekt:</string>
     <string name="aboutDiscText">Diese App ist im Rahmen des Faches \"Software Engineering für Mobile Plattformen\" entstanden. \nDie Installation und Nutzung erfolgt auf eigene Gefahr.</string>
+    <string name="aboutCopyTitle">Copyright:</string>
+    <string name="aboutCopyOtherIcoUserText">Android Icon Pack</string>
+    <string name="aboutCopyOterIcoText">weitere Icons</string>
+    <string name="aboutCopyFavIcoUserText">Icons4Android (http://www.icons4android.com)</string>
+    <string name="aboutCopyFavIcoText">Favoriten Icon</string>
+    <string name="aboutCopyAppIcoUserText">Urs Sommerhalder</string>
+    <string name="aboutCopyAppIcoText">App-Icon</string>
+    <string name="descriptionGpsButton">ruft die aktuelle Position ab</string>
+
+    <string name="clockTitle">Wecker</string>
+
 </resources>

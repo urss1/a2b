@@ -6,7 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class about extends ActionBarActivity {
+public class clock extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -14,17 +14,17 @@ public class about extends ActionBarActivity {
 
         android.support.v7.app.ActionBar ab = getSupportActionBar();
         ab.setDisplayShowHomeEnabled(true);
-        ab.setTitle(R.string.aboutTitle);
+        ab.setTitle(R.string.clockTitle);
         ab.setIcon(R.drawable.ic_appicon);
 
-        setContentView(R.layout.activity_about);
+        setContentView(R.layout.activity_clock);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_about, menu);
+        getMenuInflater().inflate(R.menu.menu_clock, menu);
         return true;
     }
 

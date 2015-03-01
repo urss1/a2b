@@ -1,75 +1,139 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- TODO: scroll Content -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/fromLabelText"
-        android:id="@+id/fromLabel"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/fromLabelText"
+            android:id="@+id/fromLabel" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/fromStation"
-        android:layout_below="@+id/fromLabel"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:width="@dimen/StationTextViewInput" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/toLabelText"
-        android:id="@+id/toLabel"
-        android:layout_below="@+id/fromStation"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/fromStation"
+                android:width="@dimen/StationTextViewInput"
+                android:inputType="textAutoComplete"
+                android:hint="@string/fromHintText"
+                android:layout_weight="1" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/toStation"
-        android:layout_below="@+id/toLabel"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:width="@dimen/StationTextViewInput" />
+            <ImageButton
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/fromSetGps"
+                android:src="@drawable/ic_action_location_found"
+                android:nestedScrollingEnabled="false"
+                android:contentDescription="@string/descriptionGpsButton" />
+        </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/viaLabelText"
-        android:id="@+id/viaLabel"
-        android:layout_below="@+id/toStation"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/toLabelText"
+            android:id="@+id/toLabel" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/viaStation"
-        android:layout_below="@+id/viaLabel"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:width="@dimen/StationTextViewInput" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <Switch
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Switch"
-        android:id="@+id/departureArrival"
-        android:layout_below="@+id/viaStation"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="43dp" />
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/toStation"
+                android:width="@dimen/StationTextViewInput"
+                android:hint="@string/toHintText"
+                android:inputType="text|textAutoComplete"
+                android:layout_weight="1" />
 
-</RelativeLayout>
+            <ImageButton
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/toSetGps"
+                android:src="@drawable/ic_action_location_found"
+                android:nestedScrollingEnabled="false"
+                android:contentDescription="@string/descriptionGpsButton" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/viaLabelText"
+            android:id="@+id/viaLabel" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/viaStation"
+                android:width="@dimen/StationTextViewInput"
+                android:inputType="text|textAutoComplete"
+                android:hint="@string/viaHintText"
+                android:layout_weight="1" />
+
+            <ImageButton
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/viaSetGps"
+                android:src="@drawable/ic_action_location_found"
+                android:nestedScrollingEnabled="false"
+                android:contentDescription="@string/descriptionGpsButton" />
+        </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/departureArrival"
+                android:layout_marginTop="43dp"
+                android:textStyle="normal"
+                android:typeface="normal"
+                android:showText="false"
+                android:textOn="Ab"
+                android:textOff="An" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnDate"
+            android:text="01.01.1970" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12:00"
+            android:id="@+id/btnTime" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/refreshDateTime"
+            android:src="@drawable/ic_action_refresh" />
+    </LinearLayout>
+
+</LinearLayout>
