@@ -7,17 +7,46 @@ import java.text.*;
  */
 public class DateHelper {
 
-    public String GetDateNow() {
-        Date dNow = new Date( );
-        SimpleDateFormat ft = new SimpleDateFormat ("dd.MM.yyyy");
+    private Calendar cal = Calendar.getInstance();
 
-        return ft.format(dNow);
+    public String GetDateNow() {
+        return GetStringFromDate(new Date());
+    }
+    public String GetTimeNow() {
+        return GetStringFromTime(new Date());
     }
 
-    public String GetTimeNow() {
-        Date dNow = new Date( );
-        SimpleDateFormat ft = new SimpleDateFormat ("hh:mm");
+    private String GetStringFromDate(Date date) {
+        SimpleDateFormat ft = new SimpleDateFormat ("dd.MM.yyyy");
+        return ft.format(date);
+    }
 
-        return ft.format(dNow);
+    private String GetStringFromTime(Date date) {
+        SimpleDateFormat ft = new SimpleDateFormat ("HH:mm");
+        return ft.format(date);
+    }
+
+
+    public String GetDateFormat(int day, int month, int year) {
+        cal.setTimeInMillis(0);
+        cal.set(year, month, day, 0, 0, 0);
+        return GetStringFromDate((Date)cal.getTime());
+    }
+
+    public int GetDay() {
+        return cal.get(Calendar.DAY_OF_MONTH);
+    }
+    public int GetMonth() {
+        return cal.get(Calendar.MONTH);
+    }
+    public int GetYear() {
+        return cal.get(Calendar.YEAR);
+    }
+
+    public int GetHour() {
+        return  cal.get(Calendar.HOUR_OF_DAY);
+    }
+    public int GetMinute() {
+        return  cal.get(Calendar.MINUTE);
     }
 }

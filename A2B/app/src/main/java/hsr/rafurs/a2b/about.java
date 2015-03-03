@@ -1,9 +1,11 @@
 package hsr.rafurs.a2b;
 
+import android.os.Build;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 
 public class about extends ActionBarActivity {
@@ -18,6 +20,9 @@ public class about extends ActionBarActivity {
         ab.setIcon(R.drawable.ic_appicon);
 
         setContentView(R.layout.activity_about);
+
+        final TextView versionNameTextView = (TextView) findViewById(R.id.aboutAppVersName);
+        versionNameTextView.setText(BuildConfig.VERSION_NAME);
     }
 
 

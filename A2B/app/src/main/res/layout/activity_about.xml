@@ -223,7 +223,7 @@
                 android:minLines="3" />
         </TableRow>
 
-        <TableRow
+    <TableRow
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.8">
@@ -246,6 +246,68 @@
                 android:maxLines="5"
                 android:minLines="3" />
         </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/idSpacer5"
+        android:minHeight="15dp"></TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/aboutVersionTitleText"
+            android:id="@+id/aboutVersionTitle"
+            android:layout_column="0"
+            android:layout_span="2" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/aboutAppVersText"
+            android:id="@+id/aboutAppVers"
+            android:layout_column="0" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/aboutAppVersNameText"
+            android:id="@+id/aboutAppVersName"
+            android:layout_column="1" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/aboutAppVersionText"
+            android:id="@+id/aboutAppVersion"
+            android:layout_column="0" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/aboutAppVersionNameText"
+            android:id="@+id/aboutAppVersionName"
+            android:layout_column="1" />
+    </TableRow>
 
 </TableLayout>
 </ScrollView>

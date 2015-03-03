@@ -18,9 +18,6 @@
     <string name="viaLabelText">via:</string>
     <string name="viaHintText">via</string>
 
-
-
-
     <string name="labelAboutTitleText">Info über A2B</string>
     <string name="aboutNameR">Raffael Zaghet</string>
     <string name="aboutMailR">raffael.zaghet@gmail.com</string>
@@ -40,5 +37,10 @@
     <string name="descriptionGpsButton">ruft die aktuelle Position ab</string>
 
     <string name="clockTitle">Wecker</string>
+    <string name="aboutVersionTitleText">Version:</string>
+    <string name="aboutAppVersText">Versionsname</string>
+    <string name="aboutAppVersNameText">x.x.x</string>
+    <string name="aboutAppVersionText">Version</string>
+    <string name="aboutAppVersionNameText">1.2.5</string>
 
 </resources>
