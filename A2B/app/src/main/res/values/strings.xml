@@ -33,9 +33,9 @@
     <string name="aboutCopyTitle">Copyright:</string>
     <string name="aboutCopyOtherIcoUserText">Android Icon Pack</string>
     <string name="aboutCopyOterIcoText">weitere Icons</string>
-    <string name="aboutCopyFavIcoUserText">Icons4Android (http://www.icons4android.com)</string>
+    <string name="aboutCopyFavIcoUserText">Icons4Android \n(http://www.icons4android.com)</string>
     <string name="aboutCopyFavIcoText">Favoriten Icon</string>
-    <string name="aboutCopyAppIcoUserText">Urs Sommerhalder</string>
+    <string name="aboutCopyAppIcoUserText">Urs Sommerhalder\n(http://www.sumali.ch)</string>
     <string name="aboutCopyAppIcoText">App-Icon</string>
     <string name="descriptionGpsButton">ruft die aktuelle Position ab</string>
 
