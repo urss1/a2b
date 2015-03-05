@@ -24,7 +24,10 @@ public class ConnectionStation {
         this.arrivalTimestamp = arrivalTimestamp;
     }
     public String getDelay(){
-        return this.delay;
+        if (this.delay != null) {
+            return this.delay;
+        }
+        return new String("0");
     }
     public void setDelay(String delay){
         this.delay = delay;

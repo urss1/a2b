@@ -19,14 +19,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <EditText
+            <AutoCompleteTextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/fromStation"
                 android:width="@dimen/StationTextViewInput"
                 android:inputType="textAutoComplete"
                 android:hint="@string/fromHintText"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:nextFocusForward="@+id/toStation"
+                android:completionThreshold="1" />
 
             <ImageButton
                 style="?android:attr/buttonStyleSmall"
@@ -50,14 +52,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <EditText
+            <AutoCompleteTextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/toStation"
                 android:width="@dimen/StationTextViewInput"
                 android:hint="@string/toHintText"
                 android:inputType="text|textAutoComplete"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:nextFocusForward="@+id/viaStation"
+                android:completionThreshold="1" />
 
             <ImageButton
                 style="?android:attr/buttonStyleSmall"
@@ -81,14 +85,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <EditText
+            <AutoCompleteTextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/viaStation"
                 android:width="@dimen/StationTextViewInput"
                 android:inputType="text|textAutoComplete"
                 android:hint="@string/viaHintText"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:completionThreshold="2" />
 
             <ImageButton
                 style="?android:attr/buttonStyleSmall"
@@ -109,8 +114,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/departureArrival"
-                android:layout_marginTop="43dp"
-                android:textStyle="normal"
+            android:textStyle="normal"
                 android:typeface="normal"
                 android:showText="false"
                 android:textOn="Ab"
@@ -135,5 +139,4 @@
             android:id="@+id/refreshDateTime"
             android:src="@drawable/ic_action_refresh" />
     </LinearLayout>
-
 </LinearLayout>

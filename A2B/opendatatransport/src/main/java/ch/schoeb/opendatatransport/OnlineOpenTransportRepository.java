@@ -75,7 +75,8 @@ public class OnlineOpenTransportRepository implements IOpenTransportRepository {
             }
 
             if (time != null && time != "") {
-                url += "&date=" + time;
+                url += "&time=" + time;
+                //url += "&date=" + time; -> Problem in der Library ...
             }
 
             if (isArrivalTime) {

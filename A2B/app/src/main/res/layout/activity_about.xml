@@ -66,6 +66,13 @@
                     android:id="@+id/aboutMailR"
                     android:autoLink="email" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="@string/aboutCopyRText"
+                    android:id="@+id/aboutCopyR" />
+
             </LinearLayout>
 
         </TableRow>
@@ -110,6 +117,13 @@
                     android:text="@string/aboutMailU"
                     android:id="@+id/aboutMailU"
                     android:autoLink="email" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="@string/aboutCopyUText"
+                    android:id="@+id/aboutCopyU" />
             </LinearLayout>
         </TableRow>
 
@@ -174,31 +188,7 @@
                 android:layout_span="2" />
         </TableRow>
 
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.8">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="@string/aboutCopyAppIcoText"
-                android:id="@+id/aboutCopyAppIco"
-                android:layout_column="0" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="@string/aboutCopyAppIcoUserText"
-                android:id="@+id/aboutCopyAppIcoUser"
-                android:layout_column="1"
-                android:maxLines="5"
-                android:minLines="3" />
-        </TableRow>
-
-        <TableRow
+    <TableRow
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.8">

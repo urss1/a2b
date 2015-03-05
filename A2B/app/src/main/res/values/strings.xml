@@ -21,8 +21,10 @@
     <string name="labelAboutTitleText">Info über A2B</string>
     <string name="aboutNameR">Raffael Zaghet</string>
     <string name="aboutMailR">raffael.zaghet@gmail.com</string>
+    <string name="aboutCopyRText">(c) Comics</string>
     <string name="aboutNameU">Urs Sommerhalder</string>
     <string name="aboutMailU">info@sumali.ch</string>
+    <string name="aboutCopyUText">(c) App-Icon</string>
     <string name="aboutImgRaDesc">Bild Raffael</string>
     <string name="aboutImgUrDesc">Bild Urs</string>
     <string name="aboutDiscTitle">Über das Projekt:</string>
@@ -32,8 +34,6 @@
     <string name="aboutCopyOterIcoText">weitere Icons</string>
     <string name="aboutCopyFavIcoUserText">Icons4Android \n(http://www.icons4android.com)</string>
     <string name="aboutCopyFavIcoText">Favoriten Icon</string>
-    <string name="aboutCopyAppIcoUserText">Urs Sommerhalder\n(http://www.sumali.ch)</string>
-    <string name="aboutCopyAppIcoText">App-Icon</string>
     <string name="descriptionGpsButton">ruft die aktuelle Position ab</string>
 
     <string name="clockTitle">Wecker</string>
@@ -43,4 +43,15 @@
     <string name="aboutAppVersionText">Version</string>
     <string name="aboutAppVersionNameText">1.2.5</string>
 
+
+    <string-array name="countries_array">
+        <item>Afghanistan</item>
+        <item>Albania</item>
+        <item>Algeria</item>
+        <item>American Samoa</item>
+        <item>Italien</item>
+        <item>Angola</item>
+        <item>Anguilla</item>
+        <item>Antarctica</item>
+    </string-array>
 </resources>
