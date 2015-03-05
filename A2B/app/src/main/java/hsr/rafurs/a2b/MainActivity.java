@@ -47,6 +47,7 @@ public class MainActivity extends ActionBarActivity {
     private Button dateButton;
     private Button timeButton;
     // AutoComplete for From- and To-Station
+    public int setAdapterOnView = 0; // 1 = From, 2 = To, 3 = via
     public AutoCompleteTextView fromStation;
     public AutoCompleteTextView toStation;
     public AutoCompleteTextView viaStation;
@@ -89,27 +90,50 @@ public class MainActivity extends ActionBarActivity {
         fromStation.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                searchString = s.toString();
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-                    new FetchStationList().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-                }
-                else {
-                    new FetchStationList().execute();
-                }
+                setAdapterOnView = 1;
+                runFetschStationList(s, start, before, count);
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-
             }
         });
         toStation = (AutoCompleteTextView) findViewById(R.id.toStation);
+        toStation.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                setAdapterOnView = 2;
+                runFetschStationList(s, start, before, count);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
         viaStation = (AutoCompleteTextView) findViewById(R.id.viaStation);
+        viaStation.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                setAdapterOnView = 3;
+                runFetschStationList(s, start, before, count);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
 
 //        fromStation.setAdapter(adapter);
 //       // from.setAdapter(new PlacesAutoCompleteAdapter(this, android.R.layout.simple_dropdown_item_1line));
@@ -120,21 +144,21 @@ public class MainActivity extends ActionBarActivity {
         final ImageButton setFromGps = (ImageButton) findViewById(R.id.fromSetGps);
         setFromGps.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                showMessage(v);
+                showMessage("From GPS");
             }
         });
 
         final ImageButton setToGps = (ImageButton) findViewById(R.id.toSetGps);
         setToGps.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                showMessage(v);
+                showMessage("To GPS");
             }
         });
 
         final ImageButton setViaGps = (ImageButton) findViewById(R.id.viaSetGps);
         setViaGps.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                showMessage(v);
+                showMessage("Via GPS");
             }
         });
 
@@ -191,8 +215,8 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void showMessage(View v) {
-        Toast.makeText(getApplicationContext(), "From GPS", Toast.LENGTH_SHORT).show();
+    private void showMessage( String msg) {
+        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
     }
 
     // Setzt das aktuelle Datum und die Zeit
@@ -231,11 +255,18 @@ public class MainActivity extends ActionBarActivity {
         tpd.show();
     }
 
-    public class FetchStationList extends AsyncTask<Void, Void, Void> {
+    private void runFetschStationList(CharSequence s, int start, int before, int count) {
+            searchString = s.toString();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+                new FetchStationList().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+            } else {
+                new FetchStationList().execute();
+            }
+    }
 
+    public class FetchStationList extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... arg0) {
-            // TODO Auto-generated method stub
             alStations.clear();
 
             StationList sl = repo.findStations(searchString);
@@ -249,55 +280,19 @@ public class MainActivity extends ActionBarActivity {
             runOnUiThread(new Runnable() {
                 public void run() {
                   adaptorAutoComplete = new ArrayAdapter<String>(mContext, android.R.layout.simple_dropdown_item_1line, alStations);
-                  fromStation.setAdapter(adaptorAutoComplete);
+                  if (setAdapterOnView == 1) {
+                      fromStation.setAdapter(adaptorAutoComplete);
+                  }
+                    else if (setAdapterOnView == 2) {
+                      toStation.setAdapter(adaptorAutoComplete);
+                  }
+                    else if (setAdapterOnView == 3) {
+                      viaStation.setAdapter(adaptorAutoComplete);
+                  }
                   adaptorAutoComplete.notifyDataSetChanged();
                 }
             });
             return null;
         } // method ends
     }
-
-
-//    class GetStations extends AsyncTask<String, Void, ArrayList<String>> {
-//        @Override
-//        // three dots is java for an array of strings
-//        protected ArrayList<String> doInBackground(String... args) {
-//
-//            ArrayList<String> predictionsArr = new ArrayList<String>();
-//
-//            try {
-//                String searchString = args[0].toString();
-//                StationList sl = repo.findStations(searchString);
-//
-//                if (sl.getStations().size() > 0) {
-//                    for (Station s : sl.getStations()) {
-//                        predictionsArr.add(s.getName());
-//                    }
-//                }
-//            } catch (Exception e) {
-//                return predictionsArr;
-//            }
-//
-//                return predictionsArr;
-//
-//        }
-//
-////then our post
-//
-//        @Override
-//        protected void onPostExecute(ArrayList<String> result) {
-//            adapter = new ArrayAdapter<String>(getBaseContext(), android.R.layout.simple_list_item_1);
-//            adapter.setNotifyOnChange(true);
-//            //attach the adapter to textview
-//            fromStation.setAdapter(adapter);
-//            for (String string : result) {
-//
-//                adapter.add(string);
-//                adapter.notifyDataSetChanged();
-//
-//            }
-//        }
-//
-//    }
-
 };
