@@ -1,7 +1,13 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/scrollView" >
+
+<LinearLayout
+    android:layout_width="match_parent"
     android:orientation="vertical"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:layout_height="wrap_content" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
@@ -23,10 +29,11 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/fromStation"
                 android:width="@dimen/StationTextViewInput"
-                android:inputType="textAutoComplete"
+                android:inputType="textNoSuggestions|textAutoComplete"
                 android:hint="@string/fromHintText"
                 android:layout_weight="1"
-                android:nextFocusForward="@+id/toStation"
+                android:imeOptions="actionNext"
+                android:selectAllOnFocus="true"
                 android:completionThreshold="1" />
 
             <ImageButton
@@ -57,9 +64,10 @@
                 android:id="@+id/toStation"
                 android:width="@dimen/StationTextViewInput"
                 android:hint="@string/toHintText"
-                android:inputType="text|textAutoComplete"
+                android:inputType="text|textNoSuggestions|textAutoComplete"
                 android:layout_weight="1"
-                android:nextFocusForward="@+id/viaStation"
+                android:imeOptions="actionNext"
+                android:selectAllOnFocus="true"
                 android:completionThreshold="1" />
 
             <ImageButton
@@ -89,9 +97,11 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/viaStation"
                 android:width="@dimen/StationTextViewInput"
-                android:inputType="text|textAutoComplete"
+                android:inputType="text|textNoSuggestions|textAutoComplete"
                 android:hint="@string/viaHintText"
                 android:layout_weight="1"
+                android:imeOptions="actionDone"
+                android:selectAllOnFocus="true"
                 android:completionThreshold="2" />
 
             <ImageButton
@@ -107,35 +117,73 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
-        <Switch
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/departureArrival"
-            android:textStyle="normal"
-                android:typeface="normal"
-                android:showText="false"
-                android:textOn="Ab"
-                android:textOff="An" />
+        <ToggleButton
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/togBtnDepArr"
+            android:textOn="@string/btnArrivalsText"
+            android:textOff="@string/btnDepartureText" />
 
         <Button
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:id="@+id/btnDate"
-            android:text="01.01.1970" />
+            android:text="@string/btnDateDefaultText" />
 
         <Button
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="12:00"
+            android:layout_height="match_parent"
+            android:text="@string/btnTimeDefaultText"
             android:id="@+id/btnTime" />
 
         <ImageButton
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:id="@+id/refreshDateTime"
-            android:src="@drawable/ic_action_refresh" />
+            android:src="@drawable/ic_action_refresh"
+            android:contentDescription="@string/refreshDateTimeButtonText" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spacer1"
+        android:minHeight="40dp"></LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Gegenrichtung"
+            android:id="@+id/btnChangeDirection"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:textSize="@dimen/abc_text_size_small_material"
+            android:textStyle="normal" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Verbindungen suchen"
+            android:id="@+id/btnSearchConnection"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:layout_gravity="right"
+            android:textStyle="bold"
+            android:textColorHighlight="@color/primary_dark"
+            android:shadowColor="@color/accent" />
     </LinearLayout>
 </LinearLayout>
+</ScrollView>

@@ -19,11 +19,14 @@ import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageButton;
@@ -57,6 +60,7 @@ public class MainActivity extends ActionBarActivity {
     //public ListView lvStations;
     ArrayList<String> alStations;
     String searchString;
+    public int actAsyncTasks = 0;
 
     // Transport Repository
     public IOpenTransportRepository repo;
@@ -135,11 +139,6 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
-//        fromStation.setAdapter(adapter);
-//       // from.setAdapter(new PlacesAutoCompleteAdapter(this, android.R.layout.simple_dropdown_item_1line));
-//        toStation.setAdapter(adapter);
-//        viaStation.setAdapter(adapter);
-
         // GPS-Buttons
         final ImageButton setFromGps = (ImageButton) findViewById(R.id.fromSetGps);
         setFromGps.setOnClickListener(new View.OnClickListener() {
@@ -184,6 +183,14 @@ public class MainActivity extends ActionBarActivity {
                 refreshDateTime();
             }
         });
+
+        // Change Directions
+        final Button changeDirections = (Button) findViewById(R.id.btnChangeDirection);
+        changeDirections.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                changeDirections(v);
+            }
+        });
     }
 
 
@@ -217,6 +224,30 @@ public class MainActivity extends ActionBarActivity {
 
     private void showMessage( String msg) {
         Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
+    }
+
+    private void changeDirections(View v) {
+        if (isEmpty(fromStation)) {
+            showMessage("Abfahrtsort darf nicht leer");
+            return;
+        }
+        if (isEmpty(toStation)) {
+            showMessage("Ankunftsort darf nicht leer");
+            return;
+        }
+
+        String temp = fromStation.getText().toString();
+        fromStation.setText(toStation.getText().toString());
+        toStation.setText(temp);
+        return;
+    }
+
+    private boolean isEmpty(AutoCompleteTextView etText) {
+        if (etText.getText().toString().trim().length() > 0) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     // Setzt das aktuelle Datum und die Zeit
@@ -256,12 +287,13 @@ public class MainActivity extends ActionBarActivity {
     }
 
     private void runFetschStationList(CharSequence s, int start, int before, int count) {
-            searchString = s.toString();
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-                new FetchStationList().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-            } else {
-                new FetchStationList().execute();
-            }
+        searchString = s.toString();
+        actAsyncTasks++;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            new FetchStationList().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+        } else {
+            new FetchStationList().execute();
+        }
     }
 
     public class FetchStationList extends AsyncTask<Void, Void, Void> {
@@ -278,21 +310,51 @@ public class MainActivity extends ActionBarActivity {
             }
 
             runOnUiThread(new Runnable() {
-                public void run() {
-                  adaptorAutoComplete = new ArrayAdapter<String>(mContext, android.R.layout.simple_dropdown_item_1line, alStations);
-                  if (setAdapterOnView == 1) {
-                      fromStation.setAdapter(adaptorAutoComplete);
-                  }
-                    else if (setAdapterOnView == 2) {
-                      toStation.setAdapter(adaptorAutoComplete);
-                  }
-                    else if (setAdapterOnView == 3) {
-                      viaStation.setAdapter(adaptorAutoComplete);
-                  }
-                  adaptorAutoComplete.notifyDataSetChanged();
-                }
-            });
+                              public void run() {
+                                  if (actAsyncTasks == 1) {
+                                      adaptorAutoComplete = new ArrayAdapter<String>(mContext, android.R.layout.simple_dropdown_item_1line, alStations);
+                                      if (setAdapterOnView == 1) {
+                                          fromStation.setAdapter(adaptorAutoComplete);
+                                      } else if (setAdapterOnView == 2) {
+                                          toStation.setAdapter(adaptorAutoComplete);
+                                      } else if (setAdapterOnView == 3) {
+                                          viaStation.setAdapter(adaptorAutoComplete);
+                                      }
+                                      adaptorAutoComplete.notifyDataSetChanged();
+                                      actAsyncTasks--;
+                                  } else {
+                                      actAsyncTasks--;
+                                  }
+                              }
+                          }
+
+            );
             return null;
         } // method ends
+    }
+
+    public void hideSoftKeyboard(View view){
+        InputMethodManager imm =(InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent event) {
+
+        View v = getCurrentFocus();
+        boolean ret = super.dispatchTouchEvent(event);
+
+        if (v instanceof EditText) {
+            View w = getCurrentFocus();
+            int scrcoords[] = new int[2];
+            w.getLocationOnScreen(scrcoords);
+            float x = event.getRawX() + w.getLeft() - scrcoords[0];
+            float y = event.getRawY() + w.getTop() - scrcoords[1];
+
+            if (event.getAction() == MotionEvent.ACTION_UP && (x < w.getLeft() || x >= w.getRight() || y < w.getTop() || y > w.getBottom()) ) {
+                hideSoftKeyboard(v);
+            }
+        }
+        return ret;
     }
 };
