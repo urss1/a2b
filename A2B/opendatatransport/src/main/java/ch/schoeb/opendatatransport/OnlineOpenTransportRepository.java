@@ -75,12 +75,15 @@ public class OnlineOpenTransportRepository implements IOpenTransportRepository {
             }
 
             if (time != null && time != "") {
+                // ToDo : hier haben wir korrigiert, da es nicht korrekt war
+                // Original: url += "&date=" + time;
                 url += "&time=" + time;
-                //url += "&date=" + time; -> Problem in der Library ...
             }
 
             if (isArrivalTime) {
-                url += "&url=1";
+                // ToDo : hier haben wir korrigiert, da es nicht korrekt war
+                // Original: url += "&url=1";
+                url += "&isArrivalTime=" + (isArrivalTime ? "1" : "0");
             }
 
         } catch (UnsupportedEncodingException e) {

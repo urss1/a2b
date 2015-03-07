@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" tools:context="hsr.rafurs.a2b.SearchResultFragment">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/linearLayout">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/resultTextFromStation"
+                android:id="@+id/textFromStation"
+                android:paddingLeft="10dp"
+                android:paddingRight="20dp"
+                android:paddingTop="10dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/resultTextDate"
+                android:id="@+id/textDate"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/resultTextToStation"
+                android:id="@+id/textToStation"
+                android:layout_gravity="center_horizontal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="5dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/resultTextTime"
+                android:id="@+id/textTime"
+                android:paddingLeft="10dp"
+                android:paddingTop="5dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Ab:"
+                android:id="@+id/titleFromTime"
+                android:maxWidth="25dp"
+                android:width="50dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="An:"
+                android:id="@+id/titleDeparture"
+                android:width="50dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Dauer:"
+                android:id="@+id/titleDuration"
+                android:width="50dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Umst:"
+                android:id="@+id/titleTransfers"
+                android:width="40dp" />
+        </LinearLayout>
+
+        <ListView android:id="@android:id/list" android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="10dp" />
+
+        <TextView android:id="@android:id/empty" android:layout_width="match_parent"
+            android:layout_height="match_parent" android:gravity="center" />
+
+    </LinearLayout>
+
+</FrameLayout>

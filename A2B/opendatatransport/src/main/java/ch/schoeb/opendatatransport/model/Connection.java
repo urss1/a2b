@@ -70,6 +70,7 @@ public class Connection{
 
     @Override
     public String toString(){
+//        return "Test" + this.transfers;
         return from.getStation().getName() + " -> " + to.getStation().getName() + " on " + from.getDeparture();
     }
 }

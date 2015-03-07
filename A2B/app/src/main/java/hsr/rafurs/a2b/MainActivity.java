@@ -1,11 +1,13 @@
 package hsr.rafurs.a2b;
 
+import ch.schoeb.opendatatransport.model.Connection;
 import ch.schoeb.opendatatransport.model.ConnectionList;
 import ch.schoeb.opendatatransport.model.Station;
 import ch.schoeb.opendatatransport.model.StationList;
 import hsr.rafurs.a2b.*;
 import android.app.ActionBar;
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -34,6 +36,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TimePicker;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -41,6 +44,8 @@ import java.util.List;
 
 import ch.schoeb.opendatatransport.IOpenTransportRepository;
 import ch.schoeb.opendatatransport.OpenTransportRepositoryFactory;
+import hsr.rafurs.a2b.SearchResult.Global;
+import hsr.rafurs.a2b.SearchResult.SearchResultItem;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -49,6 +54,7 @@ public class MainActivity extends ActionBarActivity {
     private DateHelper dateHelper = new DateHelper();
     private Button dateButton;
     private Button timeButton;
+    private ToggleButton tb;
     // AutoComplete for From- and To-Station
     public int setAdapterOnView = 0; // 1 = From, 2 = To, 3 = via
     public AutoCompleteTextView fromStation;
@@ -82,11 +88,6 @@ public class MainActivity extends ActionBarActivity {
         // From-, To- and Via-Station AutoCompleteTextView
         mContext = this;
         alStations = new ArrayList<String>();
-
-
-//        AutoCompleteTextView autoCompView = (AutoCompleteTextView) findViewById(R.id.autocomplete);
-//        autoCompView.setAdapter(new PlacesAutoCompleteAdapter(this, R.layout.list_item));
-//        autoCompView.setOnItemClickListener(this);
 
 //        adaptorAutoComplete = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, alStations);
         fromStation = (AutoCompleteTextView) findViewById(R.id.fromStation);
@@ -176,6 +177,7 @@ public class MainActivity extends ActionBarActivity {
             }
         });
         refreshDateTime();
+        tb = (ToggleButton) findViewById(R.id.togBtnDepArr);
 
         final ImageButton refreshDateTimeButton = (ImageButton) findViewById(R.id.refreshDateTime);
         refreshDateTimeButton.setOnClickListener(new View.OnClickListener() {
@@ -189,6 +191,14 @@ public class MainActivity extends ActionBarActivity {
         changeDirections.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 changeDirections(v);
+            }
+        });
+
+        // Search Button
+        final Button searchConnection = (Button) findViewById(R.id.btnSearchConnection);
+        searchConnection.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                runSearchConnection();
             }
         });
     }
@@ -227,6 +237,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
     private void changeDirections(View v) {
+
         if (isEmpty(fromStation)) {
             showMessage("Abfahrtsort darf nicht leer");
             return;
@@ -284,6 +295,64 @@ public class MainActivity extends ActionBarActivity {
                     }
                 }, dateHelper.GetHour(), dateHelper.GetMinute(), true); // True für 24h Format, False für 12h Format.
         tpd.show();
+    }
+
+    private void runSearchConnection() {
+
+//        if (isEmpty(fromStation)) {
+//            showMessage("Abfahrtsort darf nicht leer");
+//            return;
+//        }
+//        if (isEmpty(toStation)) {
+//            showMessage("Ankunftsort darf nicht leer");
+//            return;
+//        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            new FetchSearchConnections().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+        } else {
+            new FetchSearchConnections().execute();
+        }
+    }
+
+    public class FetchSearchConnections extends AsyncTask<Void, Void, SearchResultItem> {
+        public ProgressDialog pDia;
+        public SearchResultItem sItem;
+
+        @Override
+        protected void onPreExecute() {
+            pDia = ProgressDialog.show(MainActivity.this, "Bitte warten", "Verbindungen werden gesucht", true);
+            pDia.setCancelable(false);
+        }
+
+        @Override
+        protected SearchResultItem doInBackground(Void... arg0) {
+        // ToDo: Implement Search
+        //            sItem = new SearchResultItem(fromStation.getText().toString(), toStation.getText().toString());
+            sItem = new SearchResultItem("Winterthur", "Zürich HB", dateButton.getText().toString(), timeButton.getText().toString(), tb.isChecked());
+            if (viaStation.getText().length() > 0) {
+                sItem.SetViaStation(viaStation.getText().toString());
+            }
+
+            sItem.search();
+            return sItem;
+        } // method ends
+
+        @Override
+        protected void onPostExecute(SearchResultItem sItem) {
+            super.onPostExecute(sItem);
+
+            pDia.hide();
+
+            if (sItem.ITEMS.size() > 0) {
+                Global.searchResultItem = sItem;
+                Intent searchResultActivity = new Intent(MainActivity.this, ResultActivity.class);
+                startActivity(searchResultActivity);
+            } else {
+                showMessage("Keine Verbindung gefunden...");
+            }
+
+        }
     }
 
     private void runFetschStationList(CharSequence s, int start, int before, int count) {

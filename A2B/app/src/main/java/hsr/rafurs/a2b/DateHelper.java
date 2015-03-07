@@ -15,6 +15,7 @@ public class DateHelper {
     public String GetTimeNow() {
         return GetStringFromTime(new Date());
     }
+    public String GetTimeFromDate(String dateString) { return GetStringFromTime(dateString); }
 
     private String GetStringFromDate(Date date) {
         SimpleDateFormat ft = new SimpleDateFormat ("dd.MM.yyyy");
@@ -25,7 +26,19 @@ public class DateHelper {
         SimpleDateFormat ft = new SimpleDateFormat ("HH:mm");
         return ft.format(date);
     }
-
+    private String GetStringFromTime(String date) {
+        if (date == null) {
+            return null;
+        }
+        SimpleDateFormat ft = new SimpleDateFormat ("yyyy-MM-dd'T'HH:mm:ssZ");
+        Date d = null;
+        try {
+            d = ft.parse(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return GetStringFromTime(d);
+    }
 
     public String GetDateFormat(int day, int month, int year) {
         cal.setTimeInMillis(0);
