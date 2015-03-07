@@ -42,11 +42,11 @@ public class SearchResultItemAdapter extends ArrayAdapter<Connection> {
         TextView toTime = (TextView) convertView.findViewById(R.id.lvriToTime);
         toTime.setText(dHelper.GetTimeFromDate(connection.getTo().getArrival()));
         TextView duration = (TextView) convertView.findViewById(R.id.lvriDuration);
-        duration.setText(connection.getDuration());
+        duration.setText(connection.getDurationFormat());
         TextView transfers = (TextView) convertView.findViewById(R.id.lvriTransfers);
         transfers.setText(connection.getTransfers().toString());
-        TextView informations = (TextView) convertView.findViewById(R.id.lvriInformations);
-        informations.setText("wieteresss");
+        TextView platform = (TextView) convertView.findViewById(R.id.lvriPlatform);
+        platform.setText(connection.getFrom().getPlatform());
 
         ImageButton showDetail = (ImageButton) convertView.findViewById(R.id.imgBtnShowDetailConnection);
         showDetail.setOnClickListener(new View.OnClickListener() {

@@ -28,6 +28,20 @@ public class Connection{
     public String getDuration(){
         return this.duration;
     }
+    // ToDo: Anpassung für die Anzeige
+    public String getDurationFormat() {
+        if (this.duration == "") {
+            return "";
+        }
+        String[] splitDuration = this.duration.split("d");
+        if (Integer.parseInt(splitDuration[0]) > 0) {
+            return "+" + Integer.parseInt(splitDuration[0]);
+        }
+        else {
+            String[] splitTimeDuration = splitDuration[1].split(":");
+            return Integer.parseInt(splitTimeDuration[0]) + ":" + splitTimeDuration[1];
+        }
+    }
     public void setDuration(String duration){
         this.duration = duration;
     }

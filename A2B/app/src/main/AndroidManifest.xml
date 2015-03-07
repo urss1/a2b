@@ -31,16 +31,11 @@
         </activity>
         <activity
             android:name=".ResultActivity"
-            android:label="@string/resultTitle"
-            android:parentActivityName=".MainActivity" >
-        </activity>
-        <activity
-            android:name=".FavoriteActivity"
-            android:label="@string/title_activity_favorite" >
+            android:label="@string/resultTitle" >
         </activity>
         <activity
             android:name=".ResultDetail"
-            android:label="@string/title_activity_result_detail"
+            android:label="@string/resultDetailTitle"
             android:parentActivityName=".ResultActivity">
         </activity>
     </application>

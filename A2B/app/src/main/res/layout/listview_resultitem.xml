@@ -5,51 +5,93 @@
     android:minHeight="30dp"
     android:padding="5dp">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:id="@+id/lvriFromTime"
-        android:width="50dp"
-        android:text="00:00" />
+        android:layout_weight="1">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:id="@+id/lvriToTime"
-        android:width="50dp"
-        android:text="00:00" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="30dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:id="@+id/lvriDuration"
-        android:width="50dp"
-        android:text="0:00" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:id="@+id/lvriFromTime"
+                android:width="60dp"
+                android:text="00:00"
+                android:textSize="14dp"
+                android:minHeight="20dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:id="@+id/lvriTransfers"
-        android:width="40dp"
-        android:text="0" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:id="@+id/lvriToTime"
+                android:width="60dp"
+                android:text="00:00"
+                android:textSize="14dp"
+                android:minHeight="20dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:id="@+id/lvriInformations"
-        android:text="Infos"
-        android:width="100dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:id="@+id/lvriDuration"
+                android:width="60dp"
+                android:text="00:00"
+                android:minHeight="20dp"
+                android:layout_gravity="center_horizontal"
+                android:textAlignment="center"
+                android:autoText="false" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:id="@+id/lvriTransfers"
+                android:width="40dp"
+                android:text="0"
+                android:minHeight="20dp"
+                android:textAlignment="center" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:id="@+id/lvriPlatform"
+                android:text="0"
+                android:minHeight="20dp"
+                android:width="40dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:id="@+id/lvriDelay"
+                android:layout_weight="1"
+                android:layout_gravity="left"
+                android:text="Verspätung:" />
+        </LinearLayout>
+
+    </LinearLayout>
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imgBtnShowDetailConnection"
         android:src="@drawable/ic_action_next_item"
-        android:nestedScrollingEnabled="false" />
+        android:nestedScrollingEnabled="false"
+        android:contentDescription="@string/imgBtnShowDetailConnectionDesc" />
 
 </LinearLayout>

@@ -21,6 +21,11 @@ public class ResultDetail extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Main for Menu and Icons
+        android.support.v7.app.ActionBar ab = getSupportActionBar();
+        ab.setDisplayShowHomeEnabled(true);
+        ab.setIcon(R.drawable.ic_appicon);
+
         setContentView(R.layout.activity_result_detail);
         int pos = getIntent().getIntExtra("position", -1);
 
