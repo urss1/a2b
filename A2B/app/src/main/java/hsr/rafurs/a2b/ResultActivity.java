@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
+import android.widget.Toast;
 
 
 public class ResultActivity extends ActionBarActivity implements SearchResultFragment.OnFragmentInteractionListener {
@@ -25,7 +26,6 @@ public class ResultActivity extends ActionBarActivity implements SearchResultFra
                     .commit();
         }
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -46,6 +46,7 @@ public class ResultActivity extends ActionBarActivity implements SearchResultFra
 
     @Override
     public void onFragmentInteraction(String id) {
-
+        Toast.makeText(getApplicationContext(), "Frag listener " +id, Toast.LENGTH_SHORT).show();
     }
+
 }

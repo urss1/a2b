@@ -1,6 +1,7 @@
 package hsr.rafurs.a2b.SearchResult;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,8 @@ import java.util.ArrayList;
 import ch.schoeb.opendatatransport.model.Connection;
 import hsr.rafurs.a2b.DateHelper;
 import hsr.rafurs.a2b.R;
+import hsr.rafurs.a2b.ResultActivity;
+import hsr.rafurs.a2b.ResultDetail;
 
 /**
  * Created by admin on 07.03.2015.
@@ -47,10 +50,12 @@ public class SearchResultItemAdapter extends ArrayAdapter<Connection> {
 
         ImageButton showDetail = (ImageButton) convertView.findViewById(R.id.imgBtnShowDetailConnection);
         showDetail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(v.getContext(), "Hallo ich bin Nummer " + position, Toast.LENGTH_SHORT).show();
-            }
+                @Override
+                public void onClick(View v) {
+                    Intent searchResultDetailActivity = new Intent((ResultActivity)getContext(), ResultDetail.class);
+                    searchResultDetailActivity.putExtra("position", position);
+                    getContext().startActivity(searchResultDetailActivity);
+                }
         });
         return convertView;
 

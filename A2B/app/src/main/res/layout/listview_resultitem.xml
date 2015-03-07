@@ -50,7 +50,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/imgBtnShowDetailConnection"
         android:src="@drawable/ic_action_next_item"
-        android:nestedScrollingEnabled="false"
-        android:onClick=""/>
+        android:nestedScrollingEnabled="false" />
 
 </LinearLayout>

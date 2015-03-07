@@ -38,6 +38,11 @@
             android:name=".FavoriteActivity"
             android:label="@string/title_activity_favorite" >
         </activity>
+        <activity
+            android:name=".ResultDetail"
+            android:label="@string/title_activity_result_detail"
+            android:parentActivityName=".ResultActivity">
+        </activity>
     </application>
 
 </manifest>

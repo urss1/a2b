@@ -24,7 +24,6 @@ public class SearchResultItem {
     private String strTime;
     private String strDate;
 
-
     public String GetFromStation() {
         return  this.from;
     }
@@ -75,6 +74,10 @@ public class SearchResultItem {
     }
 
     public List<Connection> ITEMS = new ArrayList<Connection>();
+
+    public Connection GetConnection(int position) {
+        return (Connection)ITEMS.get(position);
+    }
 
     public Map<String, Connection> ITEM_MAP = new HashMap<String, Connection>();
 
