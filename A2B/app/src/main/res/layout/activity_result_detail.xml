@@ -183,6 +183,11 @@
                 android:layout_gravity="left|top" />
         </FrameLayout>
 
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/listViewDetail" />
+
     </LinearLayout>
 
 </FrameLayout>

@@ -31,4 +31,9 @@ public class Section {
     public void setJourney(Journey journey) {
         this.journey = journey;
     }
+
+    // ToDo: Walk
+    private Walk walk;
+    public void setWalk(Walk walk) { this.walk = walk; }
+    public Walk getWalk() { return this.walk; }
 }

@@ -14,13 +14,19 @@ public class Connection{
     private Number transfers;
 
     public Number getCapacity1st(){
-        return this.capacity1st;
+        if (this.capacity1st != null) {
+            return this.capacity1st;
+        }
+        return 0;
     }
     public void setCapacity1st(Number capacity1st){
         this.capacity1st = capacity1st;
     }
     public Number getCapacity2nd(){
-        return this.capacity2nd;
+        if (this.capacity2nd != null) {
+            return this.capacity2nd;
+        }
+        return 0;
     }
     public void setCapacity2nd(Number capacity2nd){
         this.capacity2nd = capacity2nd;

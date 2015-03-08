@@ -81,7 +81,6 @@ public class FavoriteActivity extends ActionBarActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         switch (item.getItemId()) {
             case R.id.actionMain:
-                // TODO: Favoriten korrekt implementieren
                 startActivity(new Intent(this, MainActivity.class));
                 break;
             case R.id.actionClock:

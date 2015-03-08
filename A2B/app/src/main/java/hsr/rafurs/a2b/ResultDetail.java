@@ -6,10 +6,17 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
+import android.widget.ListAdapter;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import ch.schoeb.opendatatransport.model.Connection;
+import ch.schoeb.opendatatransport.model.Section;
+import hsr.rafurs.a2b.SearchResult.SearchResultDetailItemAdapter;
 import hsr.rafurs.a2b.SearchResult.SearchResultItem;
 
 
@@ -17,6 +24,8 @@ public class ResultDetail extends ActionBarActivity {
     private Connection connection;
     private int actPostion = -1;
     private DateHelper dHelper = new DateHelper();
+    private AbsListView mListView;
+    private SearchResultDetailItemAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +62,11 @@ public class ResultDetail extends ActionBarActivity {
             TextView toPlatform = (TextView) findViewById(R.id.textToStationPlatform);
             toPlatform.setText(connection.getTo().getPlatform());
 
+            // Show List
+            mAdapter = new SearchResultDetailItemAdapter(this, (ArrayList<Section>)connection.getSections());
+            // Set the adapter
+            mListView = (AbsListView) findViewById(R.id.listViewDetail);
+            ((AdapterView<ListAdapter>) mListView).setAdapter(mAdapter);
             // Add to Favortie
             final ImageButton shareConnection = (ImageButton) findViewById(R.id.imgButShareConnection);
             shareConnection.setOnClickListener(new View.OnClickListener() {

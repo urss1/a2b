@@ -17,7 +17,7 @@ public class FavoriteItem {
     private HashSet<String> hashSet = new HashSet<String>();
 
     public FavoriteItem() {
-        hashSet =  new HashSet<String>(sharedPreferences.getStringSet(sharedSetKey, null));
+        hashSet =  new HashSet<String>(sharedPreferences.getStringSet(sharedSetKey, new HashSet<String>()));
     }
 
     public String GetFavorite(int position) {

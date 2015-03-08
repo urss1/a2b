@@ -63,6 +63,7 @@ public class MainActivity extends ActionBarActivity implements GoogleApiClient.C
     private ToggleButton tb;
     // AutoComplete for From- and To-Station
     public int setAdapterOnView = 0; // 1 = From, 2 = To, 3 = via
+    public int setPositionOnView = 0; // 1 = From, 2 = To, 3 = via
     public AutoCompleteTextView fromStation;
     public AutoCompleteTextView toStation;
     public AutoCompleteTextView viaStation;
@@ -171,7 +172,7 @@ public class MainActivity extends ActionBarActivity implements GoogleApiClient.C
         final ImageButton setFromGps = (ImageButton) findViewById(R.id.fromSetGps);
         setFromGps.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                setAdapterOnView = 1;
+                setPositionOnView = 1;
                 SetGpsPosition();
             }
         });
@@ -179,7 +180,7 @@ public class MainActivity extends ActionBarActivity implements GoogleApiClient.C
         final ImageButton setToGps = (ImageButton) findViewById(R.id.toSetGps);
         setToGps.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                setAdapterOnView = 2;
+                setPositionOnView = 2;
                 SetGpsPosition();
             }
         });
@@ -187,7 +188,7 @@ public class MainActivity extends ActionBarActivity implements GoogleApiClient.C
         final ImageButton setViaGps = (ImageButton) findViewById(R.id.viaSetGps);
         setViaGps.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                setAdapterOnView = 3;
+                setPositionOnView = 3;
                 SetGpsPosition();
             }
         });
@@ -480,7 +481,7 @@ public class MainActivity extends ActionBarActivity implements GoogleApiClient.C
         protected void onPreExecute() {
             sItem = Global.searchResultItem;
             pDia1 = ProgressDialog.show(MainActivity.this, "Bitte warten", "Position wird ermittelt.", true);
-            pDia1.setCancelable(false);
+            pDia1.setCancelable(true);
         }
 
         @Override
@@ -503,13 +504,13 @@ public class MainActivity extends ActionBarActivity implements GoogleApiClient.C
             if (result.length() == 0) {
                 showMessage("Keine Verbindung gefunden...");
             }
-            else if (setAdapterOnView == 1) {
+            else if (setPositionOnView == 1) {
                 fromStation.setText(result);
                 sItem.SetFromStation(result);
-            } else if (setAdapterOnView == 2) {
+            } else if (setPositionOnView == 2) {
                 toStation.setText(result);
                 sItem.SetToStation(result);
-            } else if (setAdapterOnView == 3) {
+            } else if (setPositionOnView == 3) {
                 viaStation.setText(result);
                 sItem.SetViaStation(result);
             } else {

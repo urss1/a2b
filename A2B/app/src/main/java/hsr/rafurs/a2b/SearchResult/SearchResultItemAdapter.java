@@ -49,11 +49,11 @@ public class SearchResultItemAdapter extends ArrayAdapter<Connection> {
         platform.setText(connection.getFrom().getPlatform());
 
         TextView delay = (TextView) convertView.findViewById(R.id.lvriDelay);
-        if (connection.getFrom().getDelay().length() > 0) {
-            delay.setText(connection.getFrom().getDelay());
+        if (connection.getFrom().getDelay().equals("0")) {
+            delay.setText("");
         }
         else {
-            delay.setText("");
+            delay.setText(connection.getFrom().getDelay());
         }
         TextView first = (TextView) convertView.findViewById(R.id.lvriFristClass);
         String fCap = "1: ";
