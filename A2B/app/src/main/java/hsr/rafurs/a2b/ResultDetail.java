@@ -1,7 +1,6 @@
 package hsr.rafurs.a2b;
 
 import android.content.Intent;
-import android.media.Image;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -11,12 +10,12 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import ch.schoeb.opendatatransport.model.Connection;
-import hsr.rafurs.a2b.SearchResult.Global;
 import hsr.rafurs.a2b.SearchResult.SearchResultItem;
 
 
 public class ResultDetail extends ActionBarActivity {
     private Connection connection;
+    private int actPostion = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,24 +25,33 @@ public class ResultDetail extends ActionBarActivity {
         ab.setDisplayShowHomeEnabled(true);
         ab.setIcon(R.drawable.ic_appicon);
 
-        setContentView(R.layout.activity_result_detail);
-        int pos = getIntent().getIntExtra("position", -1);
 
-        SearchResultItem sri = Global.searchResultItem;
-        connection = sri.GetConnection(pos);
+        actPostion = getIntent().getIntExtra("position", -1);
 
-        TextView text = (TextView) findViewById(R.id.text1);
-        text.setText(connection.toString());
-        TextView text2 = (TextView) findViewById(R.id.text2);
-        text2.setText("Ich bin " + pos);
+        if (actPostion == -1) {
+            setContentView(R.layout.activity_result_detail);
+        }
+        else {
+            setContentView(R.layout.activity_result_detail);
+            // Get Data
+            SearchResultItem searchResultItem = Global.searchResultItem;
+            connection = searchResultItem.GetConnection(actPostion);
+            // Show Data
+            TextView text = (TextView) findViewById(R.id.text1);
+            text.setText(connection.toString());
+            TextView text2 = (TextView) findViewById(R.id.text2);
+            text2.setText("Ich bin " + actPostion);
+            // Add to Favortie
+            final ImageButton shareConnection = (ImageButton) findViewById(R.id.imgButShareConnection);
+            shareConnection.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    shareConnection();
+                }
+            });
+            // Add to Clock
 
-        final ImageButton shareConnection = (ImageButton) findViewById(R.id.imgButShareConnection);
-        shareConnection.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                shareConnection();
-            }
-        });
+        }
     }
 
 

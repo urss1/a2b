@@ -14,7 +14,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import ch.schoeb.opendatatransport.model.Connection;
-import hsr.rafurs.a2b.SearchResult.Global;
 import hsr.rafurs.a2b.SearchResult.SearchResultItem;
 import hsr.rafurs.a2b.SearchResult.SearchResultItemAdapter;
 

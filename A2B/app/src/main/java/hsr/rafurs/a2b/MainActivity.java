@@ -1,11 +1,8 @@
 package hsr.rafurs.a2b;
 
-import ch.schoeb.opendatatransport.model.Connection;
-import ch.schoeb.opendatatransport.model.ConnectionList;
 import ch.schoeb.opendatatransport.model.Station;
 import ch.schoeb.opendatatransport.model.StationList;
-import hsr.rafurs.a2b.*;
-import android.app.ActionBar;
+
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
@@ -15,36 +12,27 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.support.v7.internal.widget.AdapterViewCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.Filter;
-import android.widget.Filterable;
 import android.widget.ImageButton;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 import ch.schoeb.opendatatransport.IOpenTransportRepository;
 import ch.schoeb.opendatatransport.OpenTransportRepositoryFactory;
-import hsr.rafurs.a2b.SearchResult.Global;
 import hsr.rafurs.a2b.SearchResult.SearchResultItem;
 
 

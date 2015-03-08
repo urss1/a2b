@@ -50,14 +50,21 @@
     <string name="btnArrivalsText">AN</string>
     <string name="btnDepartureText">AB</string>
     <string name="action_settings">Settings</string>
+
     <string name="resultTextFromStation">Abfahrtsort</string>
     <string name="resultTextDate">01.01.1970</string>
     <string name="resultTextToStation">Ankunftsort</string>
     <string name="resultTextTime">12:00</string>
     <string name="imgBtnShowDetailConnectionDesc">imgBtnShowDetailConnectionDesc</string>
+    <!-- Using in Result and Result-Detail -->
     <string name="textFromStationTitle">von:</string>
     <string name="textDateTitle">am:</string>
     <string name="textToStationTitle">nach:</string>
     <string name="textTimeTitle">um:</string>
+    <string name="detailErrorTextTitle">Hopperla...</string>
+    <string name="detailErrorTextMsg">Hier ging etwas nicht wie gewünscht. Versuche es doch nochmals, vielleicht hast Du im zweiten Anlauf mehr Glück.</string>
+    <string name="textFromStationTime">Abfahrt:</string>
+    <string name="textToStationTime">Ankunft:</string>
+    <string name="textFormToStationPlatform">Gleis:</string>
 
 </resources>
