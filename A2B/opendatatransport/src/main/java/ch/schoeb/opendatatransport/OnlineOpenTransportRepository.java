@@ -35,6 +35,18 @@ public class OnlineOpenTransportRepository implements IOpenTransportRepository {
         return url;
     }
 
+    // ToDo: Ergänzung für Suche der Postion mit GPS-Koordinaten (WGS84)
+    @Override
+    public StationList findStationsByRafurs(Double x, Double y) {
+        String url = null;
+        url = "http://transport.opendata.ch/v1/locations?x=" + String.valueOf(x) + "&y=" + String.valueOf(y) + "&type=station" ;
+
+        String json = GetJson(url);
+
+        Gson gson = new Gson();
+        return gson.fromJson(json, StationList.class);
+    }
+
     @Override
     public ConnectionList searchConnections(String from, String to) {
         return searchConnections(from, to, null, null, null, false);

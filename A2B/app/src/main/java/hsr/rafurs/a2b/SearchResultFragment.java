@@ -8,12 +8,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.ListAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import ch.schoeb.opendatatransport.model.Connection;
+import hsr.rafurs.a2b.Favorite.FavoriteItem;
 import hsr.rafurs.a2b.SearchResult.SearchResultItem;
 import hsr.rafurs.a2b.SearchResult.SearchResultItemAdapter;
 
@@ -77,6 +80,13 @@ public class SearchResultFragment extends Fragment implements AbsListView.OnItem
         TextView timeText = (TextView) view.findViewById(R.id.textTime);
         timeText.setText(sItem.GetConnectionTime());
 
+        ImageButton addFavorite = (ImageButton) view.findViewById(R.id.btnAddToFavorite);
+        addFavorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AddToFavorite();
+            }
+        });
         return view;
     }
 
@@ -108,6 +118,16 @@ public class SearchResultFragment extends Fragment implements AbsListView.OnItem
         }
     }
 
+
+    private void AddToFavorite() {
+        FavoriteItem favItem = new FavoriteItem();
+        if (favItem.AddFavorite(sItem.GetFromStation(), sItem.GetToStation())) {
+            Toast.makeText(getActivity(), "Favorit erfolgreich gespeichert.", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            Toast.makeText(getActivity(), "Favorit wurde nicht gespeichert.", Toast.LENGTH_SHORT).show();
+        }
+    }
     /**
      * The default content for this Fragment has a TextView that is shown when
      * the list is empty. If you would like to change the text, call this method

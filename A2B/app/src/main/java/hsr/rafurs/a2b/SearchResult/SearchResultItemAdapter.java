@@ -48,6 +48,26 @@ public class SearchResultItemAdapter extends ArrayAdapter<Connection> {
         TextView platform = (TextView) convertView.findViewById(R.id.lvriPlatform);
         platform.setText(connection.getFrom().getPlatform());
 
+        TextView delay = (TextView) convertView.findViewById(R.id.lvriDelay);
+        if (connection.getFrom().getDelay().length() > 0) {
+            delay.setText(connection.getFrom().getDelay());
+        }
+        else {
+            delay.setText("");
+        }
+        TextView first = (TextView) convertView.findViewById(R.id.lvriFristClass);
+        String fCap = "1: ";
+        for (int i = 0; i < connection.getCapacity1st().intValue(); i++) {
+            fCap = fCap + "*";
+        }
+        first.setText(fCap);
+        TextView second = (TextView) convertView.findViewById(R.id.lvriSecondClass);
+        String sCap = "2: ";
+        for (int i = 0; i < connection.getCapacity2nd().intValue(); i++) {
+            sCap = sCap + "*";
+        }
+        second.setText(sCap);
+
         ImageButton showDetail = (ImageButton) convertView.findViewById(R.id.imgBtnShowDetailConnection);
         showDetail.setOnClickListener(new View.OnClickListener() {
                 @Override

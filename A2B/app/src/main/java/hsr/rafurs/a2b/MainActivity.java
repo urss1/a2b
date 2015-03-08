@@ -8,8 +8,13 @@ import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.os.Looper;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -29,14 +34,27 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.Api;
+import com.google.android.gms.common.api.BaseImplementation;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.PendingResult;
+import com.google.android.gms.common.api.Result;
+import com.google.android.gms.common.api.Scope;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.common.api.d;
+import com.google.android.gms.location.LocationServices;
+
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 import ch.schoeb.opendatatransport.IOpenTransportRepository;
 import ch.schoeb.opendatatransport.OpenTransportRepositoryFactory;
+import hsr.rafurs.a2b.Favorite.FavoriteItem;
 import hsr.rafurs.a2b.SearchResult.SearchResultItem;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
     // Date Buttons and Helper-Method
     private DateHelper dateHelper = new DateHelper();
@@ -56,6 +74,10 @@ public class MainActivity extends ActionBarActivity {
     String searchString;
     public int actAsyncTasks = 0;
 
+    // Google API
+    private GoogleApiClient googleApiClient;
+    private Location lastLocation;
+
     // Transport Repository
     public IOpenTransportRepository repo;
 
@@ -73,13 +95,25 @@ public class MainActivity extends ActionBarActivity {
         //repo = OpenTransportRepositoryFactory.CreateLocalOpenTransportRepository();
         repo = OpenTransportRepositoryFactory.CreateOnlineOpenTransportRepository();
 
+        // Preference
+        SharedPreferences sharePreference = this.getSharedPreferences(getString(R.string.sharePreferenceKey), Context.MODE_PRIVATE);
+        Global.sharePreference = sharePreference;
+
+        if (Global.searchResultItem == null) {
+            Global.searchResultItem = new SearchResultItem();
+        }
+        // Inti Google API
+        googleApiClient = new GoogleApiClient.Builder(this)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .addApi(LocationServices.API)
+                .build();
         // From-, To- and Via-Station AutoCompleteTextView
         mContext = this;
         alStations = new ArrayList<String>();
 
-//        adaptorAutoComplete = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, alStations);
         fromStation = (AutoCompleteTextView) findViewById(R.id.fromStation);
-//        fromStation.setAdapter(adaptorAutoComplete);
+        fromStation.setText(Global.searchResultItem.GetFromStation());
         fromStation.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -93,9 +127,11 @@ public class MainActivity extends ActionBarActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
+                Global.searchResultItem.SetFromStation(s.toString());
             }
         });
         toStation = (AutoCompleteTextView) findViewById(R.id.toStation);
+        toStation.setText(Global.searchResultItem.GetToStation());
         toStation.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -109,9 +145,11 @@ public class MainActivity extends ActionBarActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
+                Global.searchResultItem.SetToStation(s.toString());
             }
         });
         viaStation = (AutoCompleteTextView) findViewById(R.id.viaStation);
+        viaStation.setText(Global.searchResultItem.GetViaStation());
         viaStation.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -125,6 +163,7 @@ public class MainActivity extends ActionBarActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
+                Global.searchResultItem.SetViaStation(s.toString());
             }
         });
 
@@ -132,40 +171,52 @@ public class MainActivity extends ActionBarActivity {
         final ImageButton setFromGps = (ImageButton) findViewById(R.id.fromSetGps);
         setFromGps.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                showMessage("From GPS");
+                setAdapterOnView = 1;
+                SetGpsPosition();
             }
         });
 
         final ImageButton setToGps = (ImageButton) findViewById(R.id.toSetGps);
         setToGps.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                showMessage("To GPS");
+                setAdapterOnView = 2;
+                SetGpsPosition();
             }
         });
 
         final ImageButton setViaGps = (ImageButton) findViewById(R.id.viaSetGps);
         setViaGps.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                showMessage("Via GPS");
+                setAdapterOnView = 3;
+                SetGpsPosition();
             }
         });
 
 
         // Date and Time Buttons
         dateButton = (Button) findViewById(R.id.btnDate);
+        dateButton.setText(Global.searchResultItem.GetConnectionDate());
         dateButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 setDateButtonSelect();
             }
         });
         timeButton = (Button) findViewById(R.id.btnTime);
+        timeButton.setText(Global.searchResultItem.GetConnectionTime());
         timeButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 setTimeButtonSelect();
             }
         });
-        refreshDateTime();
         tb = (ToggleButton) findViewById(R.id.togBtnDepArr);
+        tb.setChecked(Global.searchResultItem.GetIsDeparture());
+        tb.setOnClickListener(new View.OnClickListener() {
+                                  @Override
+                                  public void onClick(View v) {
+                                      Global.searchResultItem.SetIsArrival(tb.isChecked());
+                                  }
+                              }
+        );
 
         final ImageButton refreshDateTimeButton = (ImageButton) findViewById(R.id.refreshDateTime);
         refreshDateTimeButton.setOnClickListener(new View.OnClickListener() {
@@ -191,6 +242,17 @@ public class MainActivity extends ActionBarActivity {
         });
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        googleApiClient.connect();
+    }
+
+    @Override
+    protected void onStop() {
+        googleApiClient.disconnect();
+        super.onStop();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -206,11 +268,10 @@ public class MainActivity extends ActionBarActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         switch (item.getItemId()) {
             case R.id.actionFavorite:
-                // TODO: Favoriten korrekt implementieren
-                startActivity(new Intent(this, about.class));
+                startActivity(new Intent(this, FavoriteActivity.class));
                 break;
             case R.id.actionClock:
-                startActivity(new Intent(this, clock.class));
+                startActivity(new Intent(this, ClockActivity.class));
                 break;
             case R.id.actionAbout:
                 startActivity(new Intent(this, about.class));
@@ -235,9 +296,12 @@ public class MainActivity extends ActionBarActivity {
             return;
         }
 
-        String temp = fromStation.getText().toString();
-        fromStation.setText(toStation.getText().toString());
-        toStation.setText(temp);
+        String fStation = fromStation.getText().toString();
+        String tStation = toStation.getText().toString();
+        fromStation.setText(tStation);
+        toStation.setText(fStation);
+        Global.searchResultItem.SetFromStation(tStation);
+        Global.searchResultItem.SetToStation(fStation);
         return;
     }
 
@@ -253,9 +317,11 @@ public class MainActivity extends ActionBarActivity {
     // beim onCreate und beim Klicken des Refresh Buttons
     private void refreshDateTime() {
         if (dateButton != null) {
+            Global.searchResultItem.SetDate(dateHelper.GetDateNow());
             dateButton.setText(dateHelper.GetDateNow());
         }
         if (timeButton != null) {
+            Global.searchResultItem.SetTime(dateHelper.GetTimeNow());
             timeButton.setText(dateHelper.GetTimeNow());
         }
     }
@@ -268,6 +334,7 @@ public class MainActivity extends ActionBarActivity {
                     public void onDateSet(DatePicker view, int year,
                                           int monthOfYear, int dayOfMonth) {
                         dateButton.setText(dateHelper.GetDateFormat(dayOfMonth, monthOfYear, year));
+                        Global.searchResultItem.SetDate(dateHelper.GetDateFormat(dayOfMonth, monthOfYear, year));
                     }
                 }, dateHelper.GetYear(), dateHelper.GetMonth(), dateHelper.GetDay());
         dpd.show();
@@ -280,6 +347,7 @@ public class MainActivity extends ActionBarActivity {
                     public void onTimeSet(TimePicker view, int hourOfDay,
                                           int minute) {
                         timeButton.setText(hourOfDay + ":" + minute);
+                        Global.searchResultItem.SetTime(hourOfDay + ":" + minute);
                     }
                 }, dateHelper.GetHour(), dateHelper.GetMinute(), true); // True für 24h Format, False für 12h Format.
         tpd.show();
@@ -309,15 +377,13 @@ public class MainActivity extends ActionBarActivity {
 
         @Override
         protected void onPreExecute() {
+            sItem = Global.searchResultItem;
             pDia = ProgressDialog.show(MainActivity.this, "Bitte warten", "Verbindungen werden gesucht", true);
             pDia.setCancelable(false);
         }
 
         @Override
         protected SearchResultItem doInBackground(Void... arg0) {
-        // ToDo: Implement Search
-        //            sItem = new SearchResultItem(fromStation.getText().toString(), toStation.getText().toString());
-            sItem = new SearchResultItem("Winterthur", "Zürich HB", dateButton.getText().toString(), timeButton.getText().toString(), tb.isChecked());
             if (viaStation.getText().length() > 0) {
                 sItem.SetViaStation(viaStation.getText().toString());
             }
@@ -389,6 +455,87 @@ public class MainActivity extends ActionBarActivity {
             return null;
         } // method ends
     }
+
+    private void SetGpsPosition() {
+        if (lastLocation == null) {
+            showMessage("Keine Position gefunden.");
+            return;
+        }
+        double lat = lastLocation.getLatitude(); //47.466004 = x
+        double lon = lastLocation.getLongitude(); // 8.9931286 = y
+//        StationList sListe = repo.findStations("&x=47.466004&y=8.9931286");
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            new FetchStationLocation().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, lat, lon);
+        } else {
+            new FetchStationLocation().execute(lat,lon);
+        }
+    }
+
+    public class FetchStationLocation extends AsyncTask<Double, Void, String> {
+        public ProgressDialog pDia1;
+        public SearchResultItem sItem;
+
+        @Override
+        protected void onPreExecute() {
+            sItem = Global.searchResultItem;
+            pDia1 = ProgressDialog.show(MainActivity.this, "Bitte warten", "Position wird ermittelt.", true);
+            pDia1.setCancelable(false);
+        }
+
+        @Override
+        protected String doInBackground(Double... arg0) {
+            StationList sl = repo.findStationsByRafurs(arg0[0].doubleValue(), arg0[1].doubleValue());
+
+            if (sl.getStations().size() > 0) {
+                for (Station s : sl.getStations()) {
+                    return s.getName();
+                }
+            }
+            return "";
+        } // method ends
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            pDia1.hide();
+
+            if (result.length() == 0) {
+                showMessage("Keine Verbindung gefunden...");
+            }
+            else if (setAdapterOnView == 1) {
+                fromStation.setText(result);
+                sItem.SetFromStation(result);
+            } else if (setAdapterOnView == 2) {
+                toStation.setText(result);
+                sItem.SetToStation(result);
+            } else if (setAdapterOnView == 3) {
+                viaStation.setText(result);
+                sItem.SetViaStation(result);
+            } else {
+            }
+
+        }
+    }
+
+
+
+    // Google API -->
+    @Override
+    public void onConnected(Bundle bundle) {
+        lastLocation = LocationServices.FusedLocationApi.getLastLocation(googleApiClient);
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+
+    }
+
+    @Override
+    public void onConnectionFailed(ConnectionResult connectionResult) {
+        showMessage("Verbindungsfehler: " + connectionResult.getErrorCode());
+    }
+    // -->
 
     public void hideSoftKeyboard(View view){
         InputMethodManager imm =(InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);

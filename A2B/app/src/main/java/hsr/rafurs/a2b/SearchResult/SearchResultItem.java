@@ -9,6 +9,7 @@ import ch.schoeb.opendatatransport.IOpenTransportRepository;
 import ch.schoeb.opendatatransport.OpenTransportRepositoryFactory;
 import ch.schoeb.opendatatransport.model.Connection;
 import ch.schoeb.opendatatransport.model.ConnectionList;
+import hsr.rafurs.a2b.DateHelper;
 
 /**
  * Helper class for providing sample content for user interfaces created by
@@ -50,15 +51,33 @@ public class SearchResultItem {
         return this.via;
     }
 
-    public SearchResultItem(String from, String to, String date, String time, boolean isArrival) {
-        this.from = from;
-        this.to = to;
-        this.strDate = date;
-        this.strTime = time;
-        this.isArrival = isArrival;
+    public SearchResultItem() {
+        this.from = "";
+        this.to = "";
         this.via = "";
+        SetDateTimeNow();
+        this.isArrival = false;
     }
 
+//    public SearchResultItem(String from, String to, String date, String time, boolean isArrival) {
+//        this.from = from;
+//        this.to = to;
+//        this.strDate = date;
+//        this.strTime = time;
+//        this.isArrival = isArrival;
+//        this.via = "";
+//    }
+
+    public void SetFavorite(String favorite) {
+        String[] fromTo = favorite.split(";");
+        this.from = fromTo[0];
+        this.to = fromTo[1];
+        this.via = "";
+        SetDateTimeNow();
+    }
+
+    public void SetFromStation(String from) { this.from = from;}
+    public void SetToStation(String to) { this.to = to;}
     public void SetViaStation(String via) {
         this.via = via;
     }
@@ -84,5 +103,22 @@ public class SearchResultItem {
     private void addItem(Connection item) {
         ITEMS.add(item);
         ITEM_MAP.put(item.toString(), item);
+    }
+
+    private void SetDateTimeNow() {
+        this.strDate = new DateHelper().GetDateNow();
+        this.strTime = new DateHelper().GetTimeNow();
+    }
+
+    public void SetDate(String s) {
+        this.strDate = s;
+    }
+
+    public void SetTime(String s) {
+        this.strTime = s;
+    }
+
+    public void SetIsArrival(boolean checked) {
+        this.isArrival = checked;
     }
 }

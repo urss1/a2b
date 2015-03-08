@@ -26,6 +26,11 @@ public class LocalOpenTransportRepository implements IOpenTransportRepository {
     }
 
     @Override
+    public StationList findStationsByRafurs(Double x, Double y) {
+        return findStations("HalloHase");
+    }
+
+    @Override
     public ConnectionList searchConnections(String from, String to) {
         return searchConnections(from, to, null, null, null, false);
     }

@@ -16,6 +16,7 @@ import hsr.rafurs.a2b.SearchResult.SearchResultItem;
 public class ResultDetail extends ActionBarActivity {
     private Connection connection;
     private int actPostion = -1;
+    private DateHelper dHelper = new DateHelper();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,10 +38,21 @@ public class ResultDetail extends ActionBarActivity {
             SearchResultItem searchResultItem = Global.searchResultItem;
             connection = searchResultItem.GetConnection(actPostion);
             // Show Data
-            TextView text = (TextView) findViewById(R.id.text1);
-            text.setText(connection.toString());
-            TextView text2 = (TextView) findViewById(R.id.text2);
-            text2.setText("Ich bin " + actPostion);
+            TextView connDate = (TextView) findViewById(R.id.textDetailDate);
+            connDate.setText(searchResultItem.GetStrDate());
+            TextView fromStation = (TextView) findViewById(R.id.textFromStation);
+            fromStation.setText(connection.getFrom().getStation().getName());
+            TextView fromTime = (TextView) findViewById(R.id.textFromStationTime);
+            fromTime.setText(dHelper.GetTimeFromDate(connection.getFrom().getDeparture()));
+            TextView fromPlatform = (TextView) findViewById(R.id.textFromStationPlatform);
+            fromPlatform.setText(connection.getFrom().getPlatform());
+            TextView toStation = (TextView) findViewById(R.id.textToStation);
+            toStation.setText(connection.getTo().getStation().getName());
+            TextView toTime = (TextView) findViewById(R.id.textToStationTime);
+            toTime.setText(dHelper.GetTimeFromDate(connection.getTo().getArrival()));
+            TextView toPlatform = (TextView) findViewById(R.id.textToStationPlatform);
+            toPlatform.setText(connection.getTo().getPlatform());
+
             // Add to Favortie
             final ImageButton shareConnection = (ImageButton) findViewById(R.id.imgButShareConnection);
             shareConnection.setOnClickListener(new View.OnClickListener() {

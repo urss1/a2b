@@ -11,6 +11,9 @@
     <string name="actionFavorite">Favoriten</string>
     <string name="actionClock">Wecker</string>
 
+    // Preference Key
+    <string name="sharePreferenceKey">hsr.rafurs.a2b.preferenceFile</string>
+    //
     <string name="fromLabelText">von:</string>
     <string name="fromHintText">Abfahrtsort</string>
 
@@ -66,5 +69,11 @@
     <string name="textFromStationTime">Abfahrt:</string>
     <string name="textToStationTime">Ankunft:</string>
     <string name="textFormToStationPlatform">Gleis:</string>
+    <string name="textDetailTitle">Verbindungsdetails:</string>
+    <string name="imgButShareConnection">Share Verbindung</string>
+    <string name="title_activity_favorite">Favoriten</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="textFavoriteHint">Klicken: Verbindung suchen\nLang Klicken: Favorit löschen</string>
 
 </resources>

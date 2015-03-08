@@ -7,6 +7,8 @@ public interface IOpenTransportRepository {
 
     StationList findStations(String query);
 
+    StationList findStationsByRafurs(Double x, Double y);
+
     ConnectionList searchConnections(String from, String to);
 
     ConnectionList searchConnections(String from, String to, String via, String date, String time, Boolean isArrivalTime);

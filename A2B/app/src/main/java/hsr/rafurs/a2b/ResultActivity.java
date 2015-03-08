@@ -1,17 +1,10 @@
 package hsr.rafurs.a2b;
 
-import android.app.FragmentManager;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.os.Build;
 import android.widget.Toast;
 
 
@@ -48,12 +41,12 @@ public class ResultActivity extends ActionBarActivity implements SearchResultFra
         switch (item.getItemId()) {
             case R.id.actionMain:
                 startActivity(new Intent(this, MainActivity.class));
+                break;
             case R.id.actionFavorite:
-                // TODO: Favoriten korrekt implementieren
-                startActivity(new Intent(this, about.class));
+                startActivity(new Intent(this, FavoriteActivity.class));
                 break;
             case R.id.actionClock:
-                startActivity(new Intent(this, clock.class));
+                startActivity(new Intent(this, ClockActivity.class));
                 break;
         }
 
@@ -62,7 +55,7 @@ public class ResultActivity extends ActionBarActivity implements SearchResultFra
 
     @Override
     public void onFragmentInteraction(String id) {
-        Toast.makeText(getApplicationContext(), "Frag listener " +id, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getApplicationContext(), "Frag listener " +id, Toast.LENGTH_SHORT).show();
     }
 
 }

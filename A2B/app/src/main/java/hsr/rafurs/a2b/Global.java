@@ -1,7 +1,8 @@
 package hsr.rafurs.a2b;
 
+import android.content.SharedPreferences;
+
 import hsr.rafurs.a2b.Clock.ClockItem;
-import hsr.rafurs.a2b.Favorite.FavoriteItem;
 import hsr.rafurs.a2b.SearchResult.SearchResultItem;
 
 /**
@@ -10,5 +11,5 @@ import hsr.rafurs.a2b.SearchResult.SearchResultItem;
 public class Global {
     public static SearchResultItem searchResultItem = null;
     public static ClockItem clockItem = null;
-    public static FavoriteItem favoriteItem = null;
+    public static SharedPreferences sharePreference = null;
 }
