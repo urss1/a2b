@@ -45,9 +45,6 @@ public class ResultActivity extends ActionBarActivity implements SearchResultFra
             case R.id.actionFavorite:
                 startActivity(new Intent(this, FavoriteActivity.class));
                 break;
-            case R.id.actionClock:
-                startActivity(new Intent(this, ClockActivity.class));
-                break;
         }
 
         return super.onOptionsItemSelected(item);

@@ -10,11 +10,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.location.Location;
-import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Build;
-import android.os.Looper;
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -35,22 +32,13 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.Api;
-import com.google.android.gms.common.api.BaseImplementation;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.PendingResult;
-import com.google.android.gms.common.api.Result;
-import com.google.android.gms.common.api.Scope;
-import com.google.android.gms.common.api.Status;
-import com.google.android.gms.common.api.d;
 import com.google.android.gms.location.LocationServices;
 
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 
 import ch.schoeb.opendatatransport.IOpenTransportRepository;
 import ch.schoeb.opendatatransport.OpenTransportRepositoryFactory;
-import hsr.rafurs.a2b.Favorite.FavoriteItem;
 import hsr.rafurs.a2b.SearchResult.SearchResultItem;
 
 
@@ -63,7 +51,6 @@ public class MainActivity extends ActionBarActivity implements GoogleApiClient.C
     private ToggleButton tb;
     // AutoComplete for From- and To-Station
     public int setAdapterOnView = 0; // 1 = From, 2 = To, 3 = via
-    public int setPositionOnView = 0; // 1 = From, 2 = To, 3 = via
     public AutoCompleteTextView fromStation;
     public AutoCompleteTextView toStation;
     public AutoCompleteTextView viaStation;
@@ -75,6 +62,8 @@ public class MainActivity extends ActionBarActivity implements GoogleApiClient.C
     String searchString;
     public int actAsyncTasks = 0;
 
+    // Set Field for Update with Location
+    public int setPositionOnView = 0; // 1 = From, 2 = To, 3 = via
     // Google API
     private GoogleApiClient googleApiClient;
     private Location lastLocation;
@@ -271,9 +260,6 @@ public class MainActivity extends ActionBarActivity implements GoogleApiClient.C
             case R.id.actionFavorite:
                 startActivity(new Intent(this, FavoriteActivity.class));
                 break;
-            case R.id.actionClock:
-                startActivity(new Intent(this, ClockActivity.class));
-                break;
             case R.id.actionAbout:
                 startActivity(new Intent(this, about.class));
                 break;
@@ -289,11 +275,11 @@ public class MainActivity extends ActionBarActivity implements GoogleApiClient.C
     private void changeDirections(View v) {
 
         if (isEmpty(fromStation)) {
-            showMessage("Abfahrtsort darf nicht leer");
+            showMessage(getString(R.string.errorMessageFromIsEmpty));
             return;
         }
         if (isEmpty(toStation)) {
-            showMessage("Ankunftsort darf nicht leer");
+            showMessage(getString(R.string.errorMessageToIsEmpty));
             return;
         }
 
@@ -356,14 +342,14 @@ public class MainActivity extends ActionBarActivity implements GoogleApiClient.C
 
     private void runSearchConnection() {
 
-//        if (isEmpty(fromStation)) {
-//            showMessage("Abfahrtsort darf nicht leer");
-//            return;
-//        }
-//        if (isEmpty(toStation)) {
-//            showMessage("Ankunftsort darf nicht leer");
-//            return;
-//        }
+        if (isEmpty(fromStation)) {
+            showMessage(getString(R.string.errorMessageFromIsEmpty));
+            return;
+        }
+        if (isEmpty(toStation)) {
+            showMessage(getString(R.string.errorMessageToIsEmpty));
+            return;
+        }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
             new FetchSearchConnections().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
@@ -379,7 +365,7 @@ public class MainActivity extends ActionBarActivity implements GoogleApiClient.C
         @Override
         protected void onPreExecute() {
             sItem = Global.searchResultItem;
-            pDia = ProgressDialog.show(MainActivity.this, "Bitte warten", "Verbindungen werden gesucht", true);
+            pDia = ProgressDialog.show(MainActivity.this, getString(R.string.pleaseWaitTitle), getString(R.string.pleaseWaitSearchMsg), true);
             pDia.setCancelable(false);
         }
 
@@ -398,13 +384,14 @@ public class MainActivity extends ActionBarActivity implements GoogleApiClient.C
             super.onPostExecute(sItem);
 
             pDia.hide();
+            pDia.dismiss();
 
             if (sItem.ITEMS.size() > 0) {
                 Global.searchResultItem = sItem;
                 Intent searchResultActivity = new Intent(MainActivity.this, ResultActivity.class);
                 startActivity(searchResultActivity);
             } else {
-                showMessage("Keine Verbindung gefunden...");
+                showMessage(getString(R.string.pleaseWaitSearchError));
             }
 
         }
@@ -459,7 +446,7 @@ public class MainActivity extends ActionBarActivity implements GoogleApiClient.C
 
     private void SetGpsPosition() {
         if (lastLocation == null) {
-            showMessage("Keine Position gefunden.");
+            showMessage(getString(R.string.pleaseWaitLocationError));
             return;
         }
         double lat = lastLocation.getLatitude(); //47.466004 = x
@@ -480,7 +467,7 @@ public class MainActivity extends ActionBarActivity implements GoogleApiClient.C
         @Override
         protected void onPreExecute() {
             sItem = Global.searchResultItem;
-            pDia1 = ProgressDialog.show(MainActivity.this, "Bitte warten", "Position wird ermittelt.", true);
+            pDia1 = ProgressDialog.show(MainActivity.this, getString(R.string.pleaseWaitTitle), getString(R.string.pleaseWaitLocationMsg), true);
             pDia1.setCancelable(true);
         }
 
@@ -502,7 +489,7 @@ public class MainActivity extends ActionBarActivity implements GoogleApiClient.C
             pDia1.hide();
 
             if (result.length() == 0) {
-                showMessage("Keine Verbindung gefunden...");
+                showMessage(getString(R.string.pleaseWaitSearchError));
             }
             else if (setPositionOnView == 1) {
                 fromStation.setText(result);
@@ -534,7 +521,7 @@ public class MainActivity extends ActionBarActivity implements GoogleApiClient.C
 
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
-        showMessage("Verbindungsfehler: " + connectionResult.getErrorCode());
+        showMessage(getString(R.string.errorMessageConnection) + connectionResult.getErrorCode());
     }
     // -->
 

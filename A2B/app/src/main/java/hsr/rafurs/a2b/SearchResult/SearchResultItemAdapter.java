@@ -32,10 +32,12 @@ public class SearchResultItemAdapter extends ArrayAdapter<Connection> {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        Connection connection = getItem(position);
+        // Create new View for ListView
         if (convertView == null) {
             convertView= LayoutInflater.from(getContext()).inflate(R.layout.listview_resultitem, parent, false);
         }
+        // Get Item for display in View
+        Connection connection = getItem(position);
 
         TextView fromTime = (TextView) convertView.findViewById(R.id.lvriFromTime);
         fromTime.setText(dHelper.GetTimeFromDate(connection.getFrom().getDeparture()));

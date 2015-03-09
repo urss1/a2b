@@ -7,7 +7,7 @@ android {
         applicationId "hsr.rafurs.a2b"
         minSdkVersion 14
         targetSdkVersion 21
-        versionName '2015 - alpha'
+        versionName '2015 R2'
     }
     buildTypes {
         release {

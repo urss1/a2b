@@ -18,6 +18,9 @@ import hsr.rafurs.a2b.DateHelper;
  */
 public class SearchResultItem {
     public IOpenTransportRepository repo;
+
+    public List<Connection> ITEMS = new ArrayList<Connection>();
+
     private String from;
     private String to;
     private String via;
@@ -59,15 +62,6 @@ public class SearchResultItem {
         this.isArrival = false;
     }
 
-//    public SearchResultItem(String from, String to, String date, String time, boolean isArrival) {
-//        this.from = from;
-//        this.to = to;
-//        this.strDate = date;
-//        this.strTime = time;
-//        this.isArrival = isArrival;
-//        this.via = "";
-//    }
-
     public void SetFavorite(String favorite) {
         String[] fromTo = favorite.split(";");
         this.from = fromTo[0];
@@ -83,6 +77,9 @@ public class SearchResultItem {
     }
 
     public void search() {
+        // Delete Old-Connections
+        ITEMS.clear();
+        // Search new Connections
         repo = OpenTransportRepositoryFactory.CreateOnlineOpenTransportRepository();
         ConnectionList cL = repo.searchConnections(this.from, this.to, this.via, this.strDate, this.strTime, this.isArrival);
         if (cL.getConnections().size() > 0) {
@@ -91,8 +88,6 @@ public class SearchResultItem {
             }
         }
     }
-
-    public List<Connection> ITEMS = new ArrayList<Connection>();
 
     public Connection GetConnection(int position) {
         return (Connection)ITEMS.get(position);

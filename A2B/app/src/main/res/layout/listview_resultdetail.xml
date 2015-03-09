@@ -3,7 +3,9 @@
     android:orientation="vertical" android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:minHeight="30dp"
-    android:padding="5dp">
+    android:clickable="false"
+    android:background="@drawable/detail_text_view_background"
+    android:paddingBottom="0dp">
 
     <TextView
         android:layout_width="wrap_content"
@@ -11,27 +13,33 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Abfahrt"
         android:id="@+id/liDetFromStation"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:paddingLeft="15dp"
+        android:paddingTop="10dp" />
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:paddingBottom="5dp"
+        android:paddingLeft="15dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="Ab: 00:00"
-            android:id="@+id/liDetFromStationTime" />
+            android:id="@+id/liDetFromStationTime"
+            android:minWidth="150dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="Gleis: 0"
-            android:id="@+id/liDetFromStationPlatform" />
+            android:id="@+id/liDetFromStationPlatform"
+            android:minWidth="150dp" />
 
     </LinearLayout>
 
@@ -39,14 +47,21 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:background="@color/gray_light"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:paddingRight="2dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="ICN:506"
-            android:id="@+id/liDetJourneyName" />
+            android:id="@+id/liDetJourneyName"
+            android:paddingLeft="15dp" />
 
     </LinearLayout>
 
@@ -56,27 +71,33 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Ankunft"
         android:id="@+id/liDetToStation"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:paddingTop="5dp"
+        android:paddingLeft="15dp" />
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:paddingLeft="15dp"
+        android:paddingBottom="10dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="An: 00:00"
-            android:id="@+id/liDetToStationTime" />
+            android:id="@+id/liDetToStationTime"
+            android:minWidth="150dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="Gleis: 0"
-            android:id="@+id/liDetToStationPlatform" />
+            android:id="@+id/liDetToStationPlatform"
+            android:minWidth="150dp" />
     </LinearLayout>
 
 </LinearLayout>

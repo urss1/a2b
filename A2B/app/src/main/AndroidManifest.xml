@@ -25,10 +25,6 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".ClockActivity"
-            android:label="@string/clockTitle" >
-        </activity>
-        <activity
             android:name=".ResultActivity"
             android:label="@string/resultTitle" >
         </activity>
@@ -39,7 +35,7 @@
         </activity>
         <activity
             android:name=".FavoriteActivity"
-            android:label="@string/title_activity_favorite" >
+            android:label="@string/favoriteTitle" >
         </activity>
 
         <meta-data android:name="com.google.android.gms.version"

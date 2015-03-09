@@ -1,19 +1,20 @@
 <resources>
-    // Application Name
+    <!-- Application Name -->
     <string name="appName">A-to-B</string>
-    // Activity Titles
+    <!-- Activity Title -->
     <string name="aboutTitle">Über A2B</string>
     <string name="resultTitle">Verbindungen</string>
     <string name="resultDetailTitle">Detail</string>
-    //
-    <string name="actionAbout">About</string>
+    <string name="favoriteTitle">Favoriten</string>
+
     <string name="actionMain">Fahrplan</string>
     <string name="actionFavorite">Favoriten</string>
-    <string name="actionClock">Wecker</string>
+    <string name="actionAbout">Über</string>
 
-    // Preference Key
+    <!-- Preference Key -->
     <string name="sharePreferenceKey">hsr.rafurs.a2b.preferenceFile</string>
-    //
+
+    <!-- Main Activity -->
     <string name="fromLabelText">von:</string>
     <string name="fromHintText">Abfahrtsort</string>
 
@@ -22,6 +23,15 @@
 
     <string name="viaLabelText">via:</string>
     <string name="viaHintText">via</string>
+
+    <string name="errorMessageFromIsEmpty">Abfahrtsort darf nicht leer sein!</string>
+    <string name="errorMessageToIsEmpty">Abfahrtsort darf nicht leer sein!</string>
+    <string name="errorMessageConnection">Verbindungsfehler:</string>
+    <string name="pleaseWaitTitle">Bitte warten</string>
+    <string name="pleaseWaitSearchMsg">Verbindungen werden gesucht.</string>
+    <string name="pleaseWaitLocationMsg">Position wird ermittelt.</string>
+    <string name="pleaseWaitSearchError">Keine Verbindung gefunden...</string>
+    <string name="pleaseWaitLocationError">Keine Position gefunden...</string>
 
     <string name="labelAboutTitleText">Info über A2B</string>
     <string name="aboutNameR">Raffael Zaghet</string>
@@ -40,13 +50,11 @@
     <string name="aboutCopyFavIcoUserText">Icons4Android \n(http://www.icons4android.com)</string>
     <string name="aboutCopyFavIcoText">Favoriten Icon</string>
     <string name="descriptionGpsButton">ruft die aktuelle Position ab</string>
-
-    <string name="clockTitle">Wecker</string>
     <string name="aboutVersionTitleText">Version:</string>
     <string name="aboutAppVersText">Versionsname</string>
     <string name="aboutAppVersNameText">x.x.x</string>
     <string name="aboutAppVersionText">Version</string>
-    <string name="aboutAppVersionNameText">1.2.5</string>
+    <string name="aboutAppVersionNameText">2.1</string>
     <string name="btnDateDefaultText">01.01.1970</string>
     <string name="btnTimeDefaultText">12:00</string>
     <string name="refreshDateTimeButtonText">RefreshButtonImage</string>
@@ -71,9 +79,11 @@
     <string name="textFormToStationPlatform">Gleis:</string>
     <string name="textDetailTitle">Verbindungsdetails:</string>
     <string name="imgButShareConnection">Share Verbindung</string>
-    <string name="title_activity_favorite">Favoriten</string>
-
-    <string name="hello_world">Hello world!</string>
     <string name="textFavoriteHint">Klicken: Verbindung suchen\nLang Klicken: Favorit löschen</string>
+
+    <!-- Search Result Fragment -->
+    <string name="addFavoriteSuccess">Favorit erfolgreich gespeichert.</string>
+    <string name="addFavoriteError">Favorit wurde nicht gespeichert.</string>
+    <string name="deleteFavoriteMessage">Favorit wurde gelöscht...</string>
 
 </resources>

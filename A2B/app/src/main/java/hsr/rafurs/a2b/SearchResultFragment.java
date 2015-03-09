@@ -122,10 +122,10 @@ public class SearchResultFragment extends Fragment implements AbsListView.OnItem
     private void AddToFavorite() {
         FavoriteItem favItem = new FavoriteItem();
         if (favItem.AddFavorite(sItem.GetFromStation(), sItem.GetToStation())) {
-            Toast.makeText(getActivity(), "Favorit erfolgreich gespeichert.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), R.string.addFavoriteSuccess, Toast.LENGTH_SHORT).show();
         }
         else {
-            Toast.makeText(getActivity(), "Favorit wurde nicht gespeichert.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), R.string.addFavoriteError, Toast.LENGTH_SHORT).show();
         }
     }
     /**

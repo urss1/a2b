@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -19,7 +18,7 @@ import hsr.rafurs.a2b.Favorite.FavoriteItem;
 
 public class FavoriteActivity extends ActionBarActivity {
 
-    private  ArrayList<String> testRaffiFuerListeDaErNichtsGlaubt;
+    private  ArrayList<String> arrayListFavorites;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,10 +32,10 @@ public class FavoriteActivity extends ActionBarActivity {
 
         // Write Data
         final FavoriteItem favItem = new FavoriteItem();
-//        String[] favorites = new String[](favItem.GetArrayList());
-        testRaffiFuerListeDaErNichtsGlaubt = favItem.GetArrayList();
 
-        final ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, testRaffiFuerListeDaErNichtsGlaubt);
+        arrayListFavorites = favItem.GetArrayList();
+
+        final ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, arrayListFavorites);
 
         ListView listView = (ListView) findViewById(R.id.listViewFavorite);
         listView.setAdapter(adapter);
@@ -58,9 +57,9 @@ public class FavoriteActivity extends ActionBarActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 favItem.DeleteFavorite(position);
-                testRaffiFuerListeDaErNichtsGlaubt.remove(position);
+                arrayListFavorites.remove(position);
                 adapter.notifyDataSetChanged();
-                Toast.makeText(view.getContext(), "Favorit wurde gelöscht...", Toast.LENGTH_SHORT).show();
+                Toast.makeText(view.getContext(), R.string.deleteFavoriteMessage, Toast.LENGTH_SHORT).show();
                 return true;
             }
         });
@@ -82,9 +81,6 @@ public class FavoriteActivity extends ActionBarActivity {
         switch (item.getItemId()) {
             case R.id.actionMain:
                 startActivity(new Intent(this, MainActivity.class));
-                break;
-            case R.id.actionClock:
-                startActivity(new Intent(this, ClockActivity.class));
                 break;
             case R.id.actionAbout:
                 startActivity(new Intent(this, about.class));

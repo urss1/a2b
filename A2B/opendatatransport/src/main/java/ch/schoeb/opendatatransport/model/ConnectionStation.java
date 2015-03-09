@@ -23,6 +23,7 @@ public class ConnectionStation {
     public void setArrivalTimestamp(String arrivalTimestamp){
         this.arrivalTimestamp = arrivalTimestamp;
     }
+    // ToDo: hier haben wir korrigiert, da es nicht korrekt war
     public String getDelay(){
         if (this.delay != null) {
             return this.delay;

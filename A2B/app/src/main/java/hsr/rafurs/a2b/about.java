@@ -1,5 +1,6 @@
 package hsr.rafurs.a2b;
 
+import android.content.Intent;
 import android.os.Build;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -39,6 +40,14 @@ public class about extends ActionBarActivity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
+        switch (item.getItemId()) {
+            case R.id.actionMain:
+                startActivity(new Intent(this, MainActivity.class));
+                break;
+            case R.id.actionFavorite:
+                startActivity(new Intent(this, FavoriteActivity.class));
+                break;
+        }
 
         return super.onOptionsItemSelected(item);
     }

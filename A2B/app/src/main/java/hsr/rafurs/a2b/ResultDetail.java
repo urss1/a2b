@@ -102,12 +102,23 @@ public class ResultDetail extends ActionBarActivity {
     private void shareConnection() {
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEND);
-        // ToDo: Besserer Text machen
-        sendIntent.putExtra(Intent.EXTRA_TEXT, connection.toString());
+
+        sendIntent.putExtra(Intent.EXTRA_TEXT, getStringMessage());
         sendIntent.setType("text/plain");
         startActivity(sendIntent);
     }
 
+    public String getStringMessage() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(connection.getFrom().getStation().getName());
+        sb.append(" -> ");
+        sb.append(connection.getTo().getStation().getName());
+        sb.append(System.lineSeparator());
+        sb.append(Global.searchResultItem.GetStrDate());
+        sb.append(" - ");
+        sb.append(dHelper.GetTimeFromDate(connection.getFrom().getDeparture()));
+        return sb.toString();
+    }
 
 
 }
