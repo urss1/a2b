@@ -75,7 +75,7 @@
 
     <!-- Using in Result and Result-Detail -->
     <string name="textFromStationTitle">from:</string>
-    <string name="textDateTitle">at:</string>
+    <string name="textDateTitle">Date:</string>
     <string name="textToStationTitle">to:</string>
     <string name="textTimeTitle">at:</string>
     <string name="detailErrorTextTitle">Ups...</string>
@@ -99,12 +99,13 @@
     <string name="resultTitleTransfers">Chg.</string>
     <string name="resultTitlePlatform">Platf.</string>
     <string name="liDetFromStation">Departs from</string>
-    <string name="liDetFromStationTime">From: 00:00</string>
-    <string name="liDetFromStationPlatform">Platf.: 0</string>
+    <string name="liDetFromStationTime">From: </string>
+    <string name="liDetFromStationPlatform">Platf.: </string>
     <string name="liDetJourneyName">ICN:506</string>
     <string name="liDetToStation">Arrival</string>
-    <string name="liDetToStationTime">To: 00:00</string>
-    <string name="liDetToStationPlatform">Platf.: 0</string>
+    <string name="liDetToStationTime">To: </string>
+    <string name="liDetToStationPlatform">Platf.: </string>
+    <string name="liDetWalkingInfo">Walking: </string>
     <string name="lvriFromTime">00:00</string>
     <string name="lvriToTime">00:00</string>
     <string name="lvriDuration">00:00</string>
@@ -113,5 +114,4 @@
     <string name="lvriDelay">Info</string>
     <string name="lvriFirstClass">1: **</string>
     <string name="lvriSecondClass">2: ***</string>
-
 </resources>

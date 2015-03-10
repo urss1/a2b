@@ -98,12 +98,14 @@
     <string name="resultTitleTransfers">Umst</string>
     <string name="resultTitlePlatform">Gleis</string>
     <string name="liDetFromStation">Abfahrt</string>
-    <string name="liDetFromStationTime">Ab: 00:00</string>
-    <string name="liDetFromStationPlatform">Gleis: 0</string>
+    <string name="liDetFromStationTime">Ab: </string>
+    <string name="liDetFromStationPlatform">Gleis: </string>
     <string name="liDetJourneyName">ICN:506</string>
     <string name="liDetToStation">Ankunft</string>
-    <string name="liDetToStationTime">An: 00:00</string>
-    <string name="liDetToStationPlatform">Gleis: 0</string>
+    <string name="liDetToStationTime">An: </string>
+    <string name="liDetToStationPlatform">Gleis: </string>
+    <string name="liDetWalkingInfo">Fussweg: </string>
+
     <string name="lvriFromTime">00:00</string>
     <string name="lvriToTime">00:00</string>
     <string name="lvriDuration">00:00</string>

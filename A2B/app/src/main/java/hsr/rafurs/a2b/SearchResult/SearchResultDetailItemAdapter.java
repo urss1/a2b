@@ -2,6 +2,7 @@ package hsr.rafurs.a2b.SearchResult;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,20 +37,22 @@ public class SearchResultDetailItemAdapter extends ArrayAdapter<Section> {
         if (convertView == null) {
             convertView= LayoutInflater.from(getContext()).inflate(R.layout.listview_resultdetail, parent, false);
         }
+        Resources resources = convertView.getResources();
 
         TextView from = (TextView) convertView.findViewById(R.id.liDetFromStation);
         from.setText(section.getDeparture().getStation().getName());
 
         TextView fromTime = (TextView) convertView.findViewById(R.id.liDetFromStationTime);
-        fromTime.setText("Ab: " + dHelper.GetTimeFromDate(section.getDeparture().getDeparture()));
+
+        fromTime.setText(resources.getString(R.string.liDetFromStationTime) + " " + dHelper.GetTimeFromDate(section.getDeparture().getDeparture()));
 
         TextView fromPlatform = (TextView) convertView.findViewById(R.id.liDetFromStationPlatform);
-        fromPlatform.setText("Gleis: " + section.getDeparture().getPlatform());
+        fromPlatform.setText(resources.getString(R.string.liDetFromStationPlatform) + " " + section.getDeparture().getPlatform());
 
         TextView journeyName = (TextView) convertView.findViewById(R.id.liDetJourneyName);
         if (section.getJourney() == null) {
             if (section.getWalk() != null) {
-                journeyName.setText("Fussweg: " + section.getWalk().getDuration());
+                journeyName.setText(resources.getString(R.string.liDetWalkingInfo) + " " + section.getWalk().getDuration());
             }
             else {
                 journeyName.setText("-");
@@ -63,11 +66,11 @@ public class SearchResultDetailItemAdapter extends ArrayAdapter<Section> {
         to.setText(section.getArrival().getStation().getName());
 
         TextView toTime = (TextView) convertView.findViewById(R.id.liDetToStationTime);
-        toTime.setText("An: " + dHelper.GetTimeFromDate(section.getArrival().getArrival()));
+        toTime.setText(resources.getString(R.string.liDetToStationTime) + " " + dHelper.GetTimeFromDate(section.getArrival().getArrival()));
 
 
         TextView toPlatform = (TextView) convertView.findViewById(R.id.liDetToStationPlatform);
-        toPlatform.setText("Gleis: " + section.getArrival().getPlatform());
+        toPlatform.setText(resources.getString(R.string.liDetToStationPlatform) + " " + section.getArrival().getPlatform());
 
 //        TextView delay = (TextView) convertView.findViewById(R.id.lvriDelay);
 //        if (connection.getFrom().getDelay().equals("0")) {

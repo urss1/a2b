@@ -421,9 +421,33 @@ public class MainActivity extends ActionBarActivity implements GoogleApiClient.C
                 }
             }
 
-            runOnUiThread(new Runnable() {
-                              public void run() {
-                                  if (actAsyncTasks == 1) {
+//            runOnUiThread(new Runnable() {
+//                              public void run() {
+//                                  if (actAsyncTasks == 1) {
+//                                      adaptorAutoComplete = new ArrayAdapter<String>(mContext, android.R.layout.simple_dropdown_item_1line, alStations);
+//                                      if (setAdapterOnView == 1) {
+//                                          fromStation.setAdapter(adaptorAutoComplete);
+//                                      } else if (setAdapterOnView == 2) {
+//                                          toStation.setAdapter(adaptorAutoComplete);
+//                                      } else if (setAdapterOnView == 3) {
+//                                          viaStation.setAdapter(adaptorAutoComplete);
+//                                      }
+//                                      adaptorAutoComplete.notifyDataSetChanged();
+//                                      actAsyncTasks--;
+//                                  } else {
+//                                      actAsyncTasks--;
+//                                  }
+//                              }
+//                          }
+//
+//            );
+            return null;
+        } // method ends
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            if (actAsyncTasks == 1) {
                                       adaptorAutoComplete = new ArrayAdapter<String>(mContext, android.R.layout.simple_dropdown_item_1line, alStations);
                                       if (setAdapterOnView == 1) {
                                           fromStation.setAdapter(adaptorAutoComplete);
@@ -437,12 +461,7 @@ public class MainActivity extends ActionBarActivity implements GoogleApiClient.C
                                   } else {
                                       actAsyncTasks--;
                                   }
-                              }
-                          }
-
-            );
-            return null;
-        } // method ends
+        }
     }
 
     private void SetGpsPosition() {
