@@ -87,7 +87,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Abfahrtsort"
+                    android:text="@string/textFormDepartureName"
                     android:id="@+id/textFromStation"
                     android:layout_column="0" />
 
@@ -146,7 +146,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Ankunftsort"
+                    android:text="@string/textFormArrivalName"
                     android:id="@+id/textToStation"
                     android:layout_column="0" />
 

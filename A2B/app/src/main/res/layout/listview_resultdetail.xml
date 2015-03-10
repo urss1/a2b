@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Abfahrt"
+        android:text="@string/liDetFromStation"
         android:id="@+id/liDetFromStation"
         android:layout_weight="1"
         android:paddingLeft="15dp"
@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Ab: 00:00"
+            android:text="@string/liDetFromStationTime"
             android:id="@+id/liDetFromStationTime"
             android:minWidth="150dp" />
 
@@ -37,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Gleis: 0"
+            android:text="@string/liDetFromStationPlatform"
             android:id="@+id/liDetFromStationPlatform"
             android:minWidth="150dp" />
 
@@ -59,7 +59,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="ICN:506"
+            android:text="@string/liDetJourneyName"
             android:id="@+id/liDetJourneyName"
             android:paddingLeft="15dp" />
 
@@ -69,7 +69,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Ankunft"
+        android:text="@string/liDetToStation"
         android:id="@+id/liDetToStation"
         android:layout_weight="1"
         android:paddingTop="5dp"
@@ -87,7 +87,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="An: 00:00"
+            android:text="@string/liDetToStationTime"
             android:id="@+id/liDetToStationTime"
             android:minWidth="150dp" />
 
@@ -95,7 +95,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Gleis: 0"
+            android:text="@string/liDetToStationPlatform"
             android:id="@+id/liDetToStationPlatform"
             android:minWidth="150dp" />
     </LinearLayout>

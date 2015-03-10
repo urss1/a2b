@@ -164,7 +164,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="Gegenrichtung"
+            android:text="@string/mainOppositeDirectionText"
             android:id="@+id/btnChangeDirection"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
@@ -175,7 +175,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Verbindungen suchen"
+            android:text="@string/mainSearchConnectionsText"
             android:id="@+id/btnSearchConnection"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"

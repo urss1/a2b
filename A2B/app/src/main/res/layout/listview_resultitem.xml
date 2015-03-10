@@ -23,7 +23,7 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:id="@+id/lvriFromTime"
                 android:width="60dp"
-                android:text="00:00"
+                android:text="@string/lvriFromTime"
                 android:textSize="14dp"
                 android:minHeight="20dp" />
 
@@ -33,7 +33,7 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:id="@+id/lvriToTime"
                 android:width="60dp"
-                android:text="00:00"
+                android:text="@string/lvriToTime"
                 android:textSize="14dp"
                 android:minHeight="20dp" />
 
@@ -43,7 +43,7 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:id="@+id/lvriDuration"
                 android:width="60dp"
-                android:text="00:00"
+                android:text="@string/lvriDuration"
                 android:minHeight="20dp"
                 android:layout_gravity="center_horizontal"
                 android:textAlignment="center"
@@ -55,7 +55,7 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:id="@+id/lvriTransfers"
                 android:width="40dp"
-                android:text="0"
+                android:text="@string/lvriTransfers"
                 android:minHeight="20dp"
                 android:textAlignment="center" />
 
@@ -64,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:id="@+id/lvriPlatform"
-                android:text="0"
+                android:text="@string/lvriPlatform"
                 android:minHeight="20dp"
                 android:width="40dp" />
         </LinearLayout>
@@ -81,7 +81,7 @@
                 android:id="@+id/lvriDelay"
                 android:layout_weight="1"
                 android:layout_gravity="left"
-                android:text="Info"
+                android:text="@string/lvriDelay"
                 android:width="100dp"
                 android:textColor="@android:color/holo_red_dark" />
 
@@ -89,7 +89,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="1: **"
+                android:text="@string/lvriFirstClass"
                 android:id="@+id/lvriFristClass"
                 android:layout_weight="1"
                 android:width="50dp" />
@@ -98,7 +98,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="2: ***"
+                android:text="@string/lvriSecondClass"
                 android:id="@+id/lvriSecondClass"
                 android:layout_weight="1"
                 android:width="50dp" />

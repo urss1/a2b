@@ -144,7 +144,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Ab"
+                android:text="@string/resultTitleFromTime"
                 android:id="@+id/titleFromTime"
                 android:width="60dp" />
 
@@ -152,7 +152,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="An"
+                android:text="@string/resultTitleToTime"
                 android:id="@+id/titleDeparture"
                 android:width="60dp" />
 
@@ -160,7 +160,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Dauer"
+                android:text="@string/resultTitleDuration"
                 android:id="@+id/titleDuration"
                 android:width="60dp" />
 
@@ -168,7 +168,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Umst"
+                android:text="@string/resultTitleTransfers"
                 android:id="@+id/titleTransfers"
                 android:width="40dp" />
 
@@ -176,7 +176,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Gleis"
+                android:text="@string/resultTitlePlatform"
                 android:id="@+id/titlePlatform"
                 android:width="40dp" />
         </LinearLayout>
