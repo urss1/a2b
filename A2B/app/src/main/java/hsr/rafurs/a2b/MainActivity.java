@@ -112,7 +112,7 @@ public class MainActivity extends ActionBarActivity implements GoogleApiClient.C
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 setAdapterOnView = 1;
-                runFetschStationList(s, start, before, count);
+                runFetchStationList(s, start, before, count);
             }
 
             @Override
@@ -130,7 +130,7 @@ public class MainActivity extends ActionBarActivity implements GoogleApiClient.C
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 setAdapterOnView = 2;
-                runFetschStationList(s, start, before, count);
+                runFetchStationList(s, start, before, count);
             }
 
             @Override
@@ -148,7 +148,7 @@ public class MainActivity extends ActionBarActivity implements GoogleApiClient.C
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 setAdapterOnView = 3;
-                runFetschStationList(s, start, before, count);
+                runFetchStationList(s, start, before, count);
             }
 
             @Override
@@ -333,8 +333,9 @@ public class MainActivity extends ActionBarActivity implements GoogleApiClient.C
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay,
                                           int minute) {
-                        timeButton.setText(hourOfDay + ":" + minute);
-                        Global.searchResultItem.SetTime(hourOfDay + ":" + minute);
+                        String newTimeString = (hourOfDay < 10 ? "0" :"") +  hourOfDay + ":" + (minute < 10 ? "0" : "") +  minute;
+                        timeButton.setText(newTimeString);
+                        Global.searchResultItem.SetTime(newTimeString);
                     }
                 }, dateHelper.GetHour(), dateHelper.GetMinute(), true); // True für 24h Format, False für 12h Format.
         tpd.show();
@@ -397,7 +398,7 @@ public class MainActivity extends ActionBarActivity implements GoogleApiClient.C
         }
     }
 
-    private void runFetschStationList(CharSequence s, int start, int before, int count) {
+    private void runFetchStationList(CharSequence s, int start, int before, int count) {
         searchString = s.toString();
         actAsyncTasks++;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {

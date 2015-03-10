@@ -82,7 +82,7 @@
     <string name="textFromStationTime">Abfahrt:</string>
     <string name="textToStationTime">Ankunft:</string>
     <string name="textFormToStationPlatform">Gleis:</string>
-    <string name="textDetailTitle">Verbindungsdetails:</string>
+    <string name="textDetailTitle">Verbindungsdetails: </string>
     <string name="imgButShareConnection">Share Verbindung</string>
     <string name="textFavoriteHint">Klicken: Verbindung suchen\nLang Klicken: Favorit löschen</string>
     <string name="textFormDepartureName">Abfahrtsort</string>
