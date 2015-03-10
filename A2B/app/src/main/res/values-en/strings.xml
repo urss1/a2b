@@ -1,2 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <!-- Application Name -->
+    <string name="appName">A-to-B</string>
+    <!-- Activity Title -->
+    <string name="aboutTitle">About A2B</string>
+    <string name="resultTitle">Connections</string>
+    <string name="resultDetailTitle">Detail</string>
+    <string name="favoriteTitle">Favorites</string>
+
+    <string name="actionMain">Timetable</string>
+    <string name="actionFavorite">Favorites</string>
+    <string name="actionAbout">About</string>
+
+    <!-- Preference Key -->
+    <string name="sharePreferenceKey">hsr.rafurs.a2b.preferenceFile</string>
+
+    <!-- Main Activity -->
+    <string name="fromLabelText">from:</string>
+    <string name="fromHintText">departs from</string>
+
+    <string name="toLabelText">to:</string>
+    <string name="toHintText">destination</string>
+
+    <string name="viaLabelText">via:</string>
+    <string name="viaHintText">via</string>
+
+    <string name="errorMessageFromIsEmpty">Departs from is required!</string>
+    <string name="errorMessageToIsEmpty">Destination is required!</string>
+    <string name="errorMessageConnection">Network failure:</string>
+    <string name="pleaseWaitTitle">Please wait</string>
+    <string name="pleaseWaitSearchMsg">Searching connection...</string>
+    <string name="pleaseWaitLocationMsg">Location search...</string>
+    <string name="pleaseWaitSearchError">No connection could be found...</string>
+    <string name="pleaseWaitLocationError">Could not locate you...</string>
+    <string name="mainOppositeDirectionText">Oppos. direction</string>
+    <string name="mainSearchConnectionsText">Search connection</string>
+
+    <string name="btnDateDefaultText">01.01.1970</string>
+    <string name="btnTimeDefaultText">12:00</string>
+    <string name="refreshDateTimeButtonText">RefreshButtonImage</string>
+    <string name="btnArrivalsText">Arr</string>
+    <string name="btnDepartureText">Dep</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="resultTextFromStation">Departs from</string>
+    <string name="resultTextDate">01.01.1970</string>
+    <string name="resultTextToStation">Destination</string>
+    <string name="resultTextTime">12:00</string>
+    <string name="imgBtnShowDetailConnectionDesc">imgBtnShowDetailConnectionDesc</string>
+
+    <!-- About Activity -->
+    <string name="labelAboutTitleText">Information about A2B</string>
+    <string name="aboutNameR">Raffael Zaghet</string>
+    <string name="aboutMailR">raffael.zaghet@gmail.com</string>
+    <string name="aboutCopyRText">© Comics</string>
+    <string name="aboutNameU">Urs Sommerhalder</string>
+    <string name="aboutMailU">info@sumali.ch</string>
+    <string name="aboutCopyUText">© App-Icon</string>
+    <string name="aboutImgRaDesc">Image Raffael</string>
+    <string name="aboutImgUrDesc">Image Urs</string>
+    <string name="aboutDiscTitle">About the project:</string>
+    <string name="aboutDiscText">This application has been developed for the subject \"Software Engineering für Mobile Plattformen\" at hsr. \nInstallation and use of this app is your very own responsibility. No animals were harmed during the development of this application.</string>
+    <string name="aboutCopyTitle">Copyright:</string>
+    <string name="aboutCopyOtherIcoUserText">Android Icon Pack</string>
+    <string name="aboutCopyOterIcoText">more Icons</string>
+    <string name="aboutCopyFavIcoUserText">Icons4Android \n(http://www.icons4android.com)</string>
+    <string name="aboutCopyFavIcoText">Favorite Icon</string>
+    <string name="descriptionGpsButton">Tries to locate you.</string>
+    <string name="aboutVersionTitleText">Version:</string>
+    <string name="aboutAppVersText">Name of version</string>
+    <string name="aboutAppVersNameText">x.x.x</string>
+    <string name="aboutAppVersionText">Version</string>
+    <string name="aboutAppVersionNameText">2.1</string>
+
+    <!-- Using in Result and Result-Detail -->
+    <string name="textFromStationTitle">from:</string>
+    <string name="textDateTitle">at:</string>
+    <string name="textToStationTitle">to:</string>
+    <string name="textTimeTitle">at:</string>
+    <string name="detailErrorTextTitle">Ups...</string>
+    <string name="detailErrorTextMsg">Please retry. Something went terribly bad. We cross our fingers!</string>
+    <string name="textFromStationTime">Departure:</string>
+    <string name="textToStationTime">Arrival:</string>
+    <string name="textFormToStationPlatform">Platf.:</string>
+    <string name="textDetailTitle">Connectiondetails: </string>
+    <string name="imgButShareConnection">Share Connection</string>
+    <string name="textFavoriteHint">Click: Search connection\nLong Click: Delete favorit</string>
+    <string name="textFormDepartureName">Departs from</string>
+    <string name="textFormArrivalName">Destination</string>
+
+    <!-- Search Result Fragment -->
+    <string name="addFavoriteSuccess">Favorit successfully saved.</string>
+    <string name="addFavoriteError">Could not save favorit.</string>
+    <string name="deleteFavoriteMessage">Favorite has been deleted...</string>
+    <string name="resultTitleFromTime">Dep</string>
+    <string name="resultTitleToTime">Arr</string>
+    <string name="resultTitleDuration">Dur.</string>
+    <string name="resultTitleTransfers">Chg.</string>
+    <string name="resultTitlePlatform">Platf.</string>
+    <string name="liDetFromStation">Departs from</string>
+    <string name="liDetFromStationTime">From: 00:00</string>
+    <string name="liDetFromStationPlatform">Platf.: 0</string>
+    <string name="liDetJourneyName">ICN:506</string>
+    <string name="liDetToStation">Arrival</string>
+    <string name="liDetToStationTime">To: 00:00</string>
+    <string name="liDetToStationPlatform">Platf.: 0</string>
+    <string name="lvriFromTime">00:00</string>
+    <string name="lvriToTime">00:00</string>
+    <string name="lvriDuration">00:00</string>
+    <string name="lvriTransfers">0</string>
+    <string name="lvriPlatform">0</string>
+    <string name="lvriDelay">Info</string>
+    <string name="lvriFirstClass">1: **</string>
+    <string name="lvriSecondClass">2: ***</string>
+
+</resources>
