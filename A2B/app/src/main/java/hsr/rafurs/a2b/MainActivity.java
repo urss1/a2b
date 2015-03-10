@@ -448,7 +448,7 @@ public class MainActivity extends ActionBarActivity implements GoogleApiClient.C
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             if (actAsyncTasks == 1) {
-                                      adaptorAutoComplete = new ArrayAdapter<String>(mContext, android.R.layout.simple_dropdown_item_1line, alStations);
+                                      adaptorAutoComplete = new ArrayAdapter<String>(mContext, android.R.layout.simple_dropdown_item_1line, new ArrayList<String>(alStations));
                                       if (setAdapterOnView == 1) {
                                           fromStation.setAdapter(adaptorAutoComplete);
                                       } else if (setAdapterOnView == 2) {
