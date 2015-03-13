@@ -474,7 +474,7 @@ public class MainActivity extends ActionBarActivity implements GoogleApiClient.C
             super.onPostExecute(aVoid);
 
             if(fetchStationListException != null){
-                showMessage(fetchStationListException.getMessage());
+                showMessage(fetchStationListException.getLocalizedMessage());
                 return;
             }
 
