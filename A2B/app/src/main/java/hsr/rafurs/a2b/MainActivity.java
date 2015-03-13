@@ -362,6 +362,7 @@ public class MainActivity extends ActionBarActivity implements GoogleApiClient.C
     public class FetchSearchConnections extends AsyncTask<Void, Void, SearchResultItem> {
         public ProgressDialog pDia;
         public SearchResultItem sItem;
+        private Exception fetchSearchConnectionException;
 
         @Override
         protected void onPreExecute() {
@@ -376,7 +377,16 @@ public class MainActivity extends ActionBarActivity implements GoogleApiClient.C
                 sItem.SetViaStation(viaStation.getText().toString());
             }
 
-            sItem.search();
+            try
+            {
+                this.fetchSearchConnectionException = null;
+                sItem.search();
+            }
+            catch (Exception e){
+                this.fetchSearchConnectionException = e;
+            }
+
+
             return sItem;
         } // method ends
 
@@ -392,7 +402,13 @@ public class MainActivity extends ActionBarActivity implements GoogleApiClient.C
                 Intent searchResultActivity = new Intent(MainActivity.this, ResultActivity.class);
                 startActivity(searchResultActivity);
             } else {
-                showMessage(getString(R.string.pleaseWaitSearchError));
+                if(this.fetchSearchConnectionException != null)
+                {
+                    showMessage(getString(R.string.pleaseWaitSearchError) + " " + this.fetchSearchConnectionException.getLocalizedMessage());
+                }
+                else{
+                    showMessage(getString(R.string.pleaseWaitSearchError));
+                }
             }
 
         }
@@ -409,16 +425,25 @@ public class MainActivity extends ActionBarActivity implements GoogleApiClient.C
     }
 
     public class FetchStationList extends AsyncTask<Void, Void, Void> {
+        private Exception fetchStationListException;
+
         @Override
         protected Void doInBackground(Void... arg0) {
             alStations.clear();
 
-            StationList sl = repo.findStations(searchString);
+            try
+            {
+                this.fetchStationListException = null;
+                StationList sl = repo.findStations(searchString);
 
-            if (sl.getStations().size() > 0) {
-                for (Station s : sl.getStations()) {
-                    alStations.add(s.getName());
+                if (sl.getStations().size() > 0) {
+                    for (Station s : sl.getStations()) {
+                        alStations.add(s.getName());
+                    }
                 }
+            }
+            catch(Exception e){
+                this.fetchStationListException = e;
             }
 
 //            runOnUiThread(new Runnable() {
@@ -447,6 +472,12 @@ public class MainActivity extends ActionBarActivity implements GoogleApiClient.C
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
+
+            if(fetchStationListException != null){
+                showMessage(fetchStationListException.getMessage());
+                return;
+            }
+
             if (actAsyncTasks == 1) {
                                       adaptorAutoComplete = new ArrayAdapter<String>(mContext, android.R.layout.simple_dropdown_item_1line, new ArrayList<String>(alStations));
                                       if (setAdapterOnView == 1) {
